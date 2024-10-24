@@ -65,14 +65,18 @@ public class PlayerMouse : MonoBehaviour
             mouseDown = true;
             onMouseDown.Invoke();
             //bool err = false;
+            Action delayedEvents = () => { };
             foreach (MouseInteractable i in interactables)
             {
-                if (i == null) { Debug.LogWarning("null intertactable in mouse list still"); break; }
                 if (i.mouseInside)
                 {
-                    i.onMouseDown.Invoke(); //invoke if clicked inside
+                    if (i.IsMenuButton)
+                        delayedEvents += () => { i.onMouseDown.Invoke(); };
+                    else
+                        i.onMouseDown.Invoke(); //invoke if clicked inside
                 }
             }
+            delayedEvents();
             //if (err) interactables.Clear();
         }
         else if (ctx.canceled)
@@ -80,14 +84,18 @@ public class PlayerMouse : MonoBehaviour
             mouseDown = false;
             onMouseUp.Invoke();
             //bool err = false;
+            Action delayedEvents = () => { };
             foreach (MouseInteractable i in interactables)
             {
-                if (i == null) { Debug.LogWarning("null intertactable in mouse list still"); break; }
                 if (i.mouseInside)
                 {
-                    i.onMouseDown.Invoke(); //invoke if clicked inside
+                    if (i.IsMenuButton)
+                        delayedEvents += () => { i.onMouseDown.Invoke(); };
+                    else
+                        i.onMouseDown.Invoke(); //invoke if clicked inside
                 }
             }
+            delayedEvents();
             //if (err) interactables.Clear();
         }
     }

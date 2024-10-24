@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class MouseInteractable : MonoBehaviour
 {
+    public bool IsMenuButton = false;
+
     public UnityEvent onMouseEnter;
     public UnityEvent onMouseExit;
     public UnityEvent onMouseDown;
