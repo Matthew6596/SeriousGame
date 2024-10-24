@@ -40,6 +40,8 @@ public class PlayerMouse : MonoBehaviour
 
     public void MouseMove(InputAction.CallbackContext ctx)
     {
+        if (Camera.main == null) return;
+
         mousePos = ctx.ReadValue<Vector2>();
         //convert mouse pos to world pos
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -48,6 +50,7 @@ public class PlayerMouse : MonoBehaviour
         
         foreach (MouseInteractable i in interactables) 
         {
+            if (i == null) { Debug.LogWarning("null intertactable in mouse list still"); break; }
             if (i.CheckInside(out bool inside))
             {
                 if (inside) i.onMouseEnter.Invoke();
@@ -61,15 +64,31 @@ public class PlayerMouse : MonoBehaviour
         {
             mouseDown = true;
             onMouseDown.Invoke();
-            foreach(MouseInteractable i in interactables)
-            if (i.mouseInside) i.onMouseDown.Invoke(); //invoke if clicked inside
+            //bool err = false;
+            foreach (MouseInteractable i in interactables)
+            {
+                if (i == null) { Debug.LogWarning("null intertactable in mouse list still"); break; }
+                if (i.mouseInside)
+                {
+                    i.onMouseDown.Invoke(); //invoke if clicked inside
+                }
+            }
+            //if (err) interactables.Clear();
         }
         else if (ctx.canceled)
         {
             mouseDown = false;
             onMouseUp.Invoke();
+            //bool err = false;
             foreach (MouseInteractable i in interactables)
-            if (i.mouseInside) i.onMouseUp.Invoke(); //invoke of released inside << finished clicking
+            {
+                if (i == null) { Debug.LogWarning("null intertactable in mouse list still"); break; }
+                if (i.mouseInside)
+                {
+                    i.onMouseDown.Invoke(); //invoke if clicked inside
+                }
+            }
+            //if (err) interactables.Clear();
         }
     }
 }

@@ -8,4 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/MattTest.unity
+    guid: 6ad69329f12a7204bb254e2f15b927bd
+  - enabled: 1
+    path: Assets/Scenes/Hub.unity
+    guid: b75ab6d86a61e694b84055064b28e059
+  - enabled: 1
+    path: Assets/Scenes/MatchingGame.unity
+    guid: 9338098517a159d42988a998e0546f2b
+  - enabled: 1
+    path: Assets/Scenes/MinigameSelect.unity
+    guid: babf0018e18b74542a4c5b5bee7040a7
+  - enabled: 1
+    path: Assets/Scenes/MouseMaze.unity
+    guid: 5cc54ec4d7b7dac4c860b02e3a2f8d30
   m_configObjects: {}
