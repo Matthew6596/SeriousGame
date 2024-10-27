@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -13,15 +14,18 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void QuitGame() { Application.Quit(); }
 
     public void ChangeScene(string sceneName)
     {
         PlayerMouse.interactables.Clear();
         SceneManager.LoadScene(sceneName);
+    }
+
+    private string selectedMinigameType;
+    public void SelectMinigameType(string type)
+    {
+        selectedMinigameType = type;
+        ChangeScene("MinigameSelect");
     }
 }

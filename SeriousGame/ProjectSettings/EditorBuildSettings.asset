@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Hub.unity
     guid: b75ab6d86a61e694b84055064b28e059
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: e39826072c090074e8cf9983ebf816a9
+  - enabled: 1
+    path: Assets/Scenes/RebeccaTest.unity
+    guid: 663ee84e2c7ae5b49b50c0af62aa5843
+  - enabled: 1
     path: Assets/Scenes/MatchingGame.unity
     guid: 9338098517a159d42988a998e0546f2b
   - enabled: 1

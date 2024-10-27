@@ -50,7 +50,6 @@ public class PlayerMouse : MonoBehaviour
         
         foreach (MouseInteractable i in interactables) 
         {
-            if (i == null) { Debug.LogWarning("null intertactable in mouse list still"); break; }
             if (i.CheckInside(out bool inside))
             {
                 if (inside) i.onMouseEnter.Invoke();
@@ -64,39 +63,19 @@ public class PlayerMouse : MonoBehaviour
         {
             mouseDown = true;
             onMouseDown.Invoke();
-            //bool err = false;
-            Action delayedEvents = () => { };
             foreach (MouseInteractable i in interactables)
             {
-                if (i.mouseInside)
-                {
-                    if (i.IsMenuButton)
-                        delayedEvents += () => { i.onMouseDown.Invoke(); };
-                    else
-                        i.onMouseDown.Invoke(); //invoke if clicked inside
-                }
+                if (i.mouseInside) i.onMouseDown.Invoke(); //invoke if clicked inside
             }
-            delayedEvents();
-            //if (err) interactables.Clear();
         }
         else if (ctx.canceled)
         {
             mouseDown = false;
             onMouseUp.Invoke();
-            //bool err = false;
-            Action delayedEvents = () => { };
             foreach (MouseInteractable i in interactables)
             {
-                if (i.mouseInside)
-                {
-                    if (i.IsMenuButton)
-                        delayedEvents += () => { i.onMouseDown.Invoke(); };
-                    else
-                        i.onMouseDown.Invoke(); //invoke if clicked inside
-                }
+                if (i.mouseInside) i.onMouseUp.Invoke();
             }
-            delayedEvents();
-            //if (err) interactables.Clear();
         }
     }
 }
