@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5819186758911829512}
   - component: {fileID: 5173984003336814769}
   - component: {fileID: 2293443742568329210}
+  - component: {fileID: -3115072125491954587}
   - component: {fileID: 2157539006055709106}
   m_Layer: 0
   m_Name: MatchingCard
@@ -115,13 +116,73 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onMouseEnter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3115072125491954587}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: SetScaleX
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -3115072125491954587}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: SetScaleY
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onMouseExit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3115072125491954587}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: ResetScale
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onMouseDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -3115072125491954587}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: SetScaleX
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.9
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -3115072125491954587}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: SetScaleY
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.9
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onMouseUp:
     m_PersistentCalls:
       m_Calls:
@@ -137,7 +198,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -3115072125491954587}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: SetImmediateScaleX
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   mouseInside: 0
+--- !u!114 &-3115072125491954587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725366329683053642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097f4c50c9007ba439c22256be8106a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rate: 0.1
 --- !u!61 &2157539006055709106
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -52,4 +52,44 @@ public class MatchingMinigame : MonoBehaviour
             cards.Add(card2);
         }
     }
+
+    private MatchingCard heldCard=null;
+    public void CheckCard(MatchingCard card)
+    {
+        if (heldCard == null) //first card flipped
+        {
+            heldCard = card;
+        }
+        else //second card flipped, check for match
+        {
+            PlayerMouse.inst.disableClick = true;
+            if (heldCard.cardType == card.cardType) //cards match!
+            {
+                MenuManager.DelayAction(1, () => 
+                {
+                    heldCard.gameObject.SetActive(false);
+                    card.gameObject.SetActive(false);
+                    cards.Remove(heldCard);
+                    cards.Remove(card);
+                    if (cards.Count == 0) WinMinigame();
+                    heldCard = null;
+                    PlayerMouse.inst.disableClick = false;
+                });
+            }
+            else //cards dont match :(
+            {
+                MenuManager.DelayAction(1, () => 
+                { 
+                    heldCard.FlipCardOver();
+                    card.FlipCardOver();
+                    heldCard = null;
+                    PlayerMouse.inst.disableClick = false;
+                });
+            }
+        }
+    }
+    public void WinMinigame()
+    {
+        Debug.Log("You Win!");
+    }
 }

@@ -20,6 +20,7 @@ public class PlayerMouse : MonoBehaviour
     public bool mouseDown = false;
     public Vector2 mousePos;
 
+    public bool disableClick = false;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class PlayerMouse : MonoBehaviour
     }
     public void MouseClick(InputAction.CallbackContext ctx)
     {
+        if (disableClick) return;
         if (ctx.performed) //if clicked
         {
             mouseDown = true;

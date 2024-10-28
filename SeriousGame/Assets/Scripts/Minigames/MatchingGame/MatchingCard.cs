@@ -16,7 +16,12 @@ public class MatchingCard : MonoBehaviour
 
     public void FlipCard()
     {
+        FlipCardOver();
+        MatchingMinigame.Inst.CheckCard(this);
+    }
+    public void FlipCardOver()
+    {
         flipped = !flipped;
-        _renderer.sprite = MatchingMinigame.Inst.cardSprites[(flipped)?cardType:0];
+        _renderer.sprite = MatchingMinigame.Inst.cardSprites[(flipped) ? cardType : 0];
     }
 }
