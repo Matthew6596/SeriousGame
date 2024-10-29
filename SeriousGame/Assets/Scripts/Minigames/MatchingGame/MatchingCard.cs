@@ -8,10 +8,12 @@ public class MatchingCard : MonoBehaviour
     public int cardType;
 
     SpriteRenderer _renderer;
+    TweenScale _scaleFx;
 
     private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
+        _scaleFx = GetComponent<TweenScale>();
     }
 
     public void FlipCard()
@@ -23,5 +25,6 @@ public class MatchingCard : MonoBehaviour
     {
         flipped = !flipped;
         _renderer.sprite = MatchingMinigame.Inst.cardSprites[(flipped) ? cardType : 0];
+        _scaleFx.SetImmediateScaleX(0.2f);
     }
 }

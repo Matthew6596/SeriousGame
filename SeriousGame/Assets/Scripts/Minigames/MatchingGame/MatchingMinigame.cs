@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MatchingMinigame : MonoBehaviour
 {
@@ -12,7 +11,7 @@ public class MatchingMinigame : MonoBehaviour
     public Sprite[] cardSprites;
     public Transform[] cardPositions;
 
-    public List<MatchingCard> cards;
+    public List<MatchingCard> cards { get; set; } = new();
 
     private void Awake(){Inst = this;}
 
@@ -31,19 +30,22 @@ public class MatchingMinigame : MonoBehaviour
     public void StartMinigame()
     {
         List<Transform> positions = new(); positions.AddRange(cardPositions);
-        for(int i=1; i<cardSprites.Length; i++)
+        int numPairs = (cardPositions.Length/2)+1;
+        for(int i=1, j=1; i<numPairs; i++, j++)
         {
+            if (j >= cardSprites.Length) j = 1;
+
             //first card
             GameObject c1 = Instantiate(cardPrefab);
             MatchingCard card1 = c1.GetComponent<MatchingCard>();
-            card1.cardType = i;
+            card1.cardType = j;
             int r = Random.Range(0, positions.Count);
             card1.transform.position = positions[r].position; positions.RemoveAt(r);
 
             //it's matching card
             GameObject c2 = Instantiate(cardPrefab);
             MatchingCard card2 = c2.GetComponent<MatchingCard>();
-            card2.cardType = i;
+            card2.cardType = j;
             r = Random.Range(0, positions.Count);
             card2.transform.position = positions[r].position; positions.RemoveAt(r);
 
@@ -90,6 +92,7 @@ public class MatchingMinigame : MonoBehaviour
     }
     public void WinMinigame()
     {
+        MenuManager.DelayAction(1, () => { MenuManager.Inst.ChangeScene("MinigameSelect"); });
         Debug.Log("You Win!");
     }
 }
