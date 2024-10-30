@@ -6,17 +6,24 @@ using TMPro;
 
 public class Instructions : MonoBehaviour
 {
-    public TMP_Text[] textBoxes;
+    public TMP_Text title;
+    public GameObject[] textGroups;
     public Image[] images;
 
-    public void SetText(TMP_Text textBox, string newText)
+    //Trying to do stuff
+    //public void SetText(int i, string newText)
+    //{
+    //    textBoxes[i].text = newText;
+    //}
+
+    public void SetTextBoxInactive(int i)
     {
-        textBox.text = newText;
+        textGroups[i].SetActive(false);
     }
 
-    public void SetTextBoxActive(TMP_Text textBox, bool active)
+    public void SetTextBoxActive(int i)
     {
-        textBox.gameObject.SetActive(active);
+        textGroups[i].SetActive(true);
     }
 
     // Start is called before the first frame update
