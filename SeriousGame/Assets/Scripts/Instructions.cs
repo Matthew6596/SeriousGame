@@ -6,7 +6,6 @@ using TMPro;
 
 public class Instructions : MonoBehaviour
 {
-    public TMP_Text title;
     public GameObject[] textGroups;
     public Image[] images;
 
