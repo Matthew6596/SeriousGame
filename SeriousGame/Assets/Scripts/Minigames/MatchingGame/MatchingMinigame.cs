@@ -92,7 +92,7 @@ public class MatchingMinigame : MonoBehaviour
     }
     public void WinMinigame()
     {
-        MenuManager.DelayAction(1, () => { MenuManager.Inst.ChangeScene("MinigameSelect"); });
+        MenuManager.DelayAction(1, () => { MenuManager.Inst.ChangeScene("Hub"); });
         Debug.Log("You Win!");
     }
 }
