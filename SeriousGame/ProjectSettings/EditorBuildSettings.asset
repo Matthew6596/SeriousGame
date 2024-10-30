@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: e39826072c090074e8cf9983ebf816a9
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
@@ -14,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hub.unity
     guid: b75ab6d86a61e694b84055064b28e059
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: e39826072c090074e8cf9983ebf816a9
   - enabled: 1
     path: Assets/Scenes/RebeccaTest.unity
     guid: 663ee84e2c7ae5b49b50c0af62aa5843
