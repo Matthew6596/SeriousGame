@@ -11,6 +11,7 @@ public class MouseInteractable : MonoBehaviour
     public UnityEvent onMouseExit;
     public UnityEvent onMouseDown;
     public UnityEvent onMouseUp;
+    public UnityEvent onMouseCancel;
 
     Collider2D _collider;
 

@@ -14,7 +14,8 @@ public class MouseDraggable : MouseInteractable
     {
         start();
         onMouseDown.AddListener(() => { dragging = true; clickOffset = PlayerMouse.MousePos - (Vector2)transform.position; });
-        PlayerMouse.inst.onMouseUp.AddListener(() => { dragging = false; });
+        onMouseUp.AddListener(() => { dragging = false; });
+        onMouseCancel.AddListener(() => { dragging = false; });
         tweenPos = GetComponent<TweenPosition>();
     }
 
