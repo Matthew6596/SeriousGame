@@ -11,7 +11,7 @@ public class MouseMaze : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PlayerMouse.inst.mousePos = mouseStartingPos;
+        MenuManager.lastMinigame = "MouseMaze";
     }
 
     // Update is called once per frame

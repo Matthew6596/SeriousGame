@@ -20,7 +20,7 @@ public class MazeGoal : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<MouseFollower>() != null) 
         {
-            MenuManager.DelayAction(1, () => { MenuManager.Inst.ChangeScene("Hub"); });
+            MenuManager.DelayAction(0.6f, () => { MenuManager.Inst.ChangeScene("WinScreen"); });
             Debug.Log("You Win!");
         }
     }
