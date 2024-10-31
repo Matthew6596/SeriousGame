@@ -29,6 +29,7 @@ public class MatchingMinigame : MonoBehaviour
 
     public void StartMinigame()
     {
+        MenuManager.lastMinigame = "MatchingGame";
         List<Transform> positions = new(); positions.AddRange(cardPositions);
         int numPairs = (cardPositions.Length/2)+1;
         for(int i=1, j=1; i<numPairs; i++, j++)
@@ -92,7 +93,7 @@ public class MatchingMinigame : MonoBehaviour
     }
     public void WinMinigame()
     {
-        MenuManager.DelayAction(1, () => { MenuManager.Inst.ChangeScene("Hub"); });
+        MenuManager.DelayAction(0.6f, () => { MenuManager.Inst.ChangeScene("WinScreen"); });
         Debug.Log("You Win!");
     }
 }
