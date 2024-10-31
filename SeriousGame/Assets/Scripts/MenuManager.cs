@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    public static string lastMinigame = "Hub";
     public static MenuManager Inst;
     //private GameManager gm;
 
@@ -44,5 +45,10 @@ public class MenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         action();
+    }
+
+    public void ReplayLastMinigame()
+    {
+        ChangeScene(lastMinigame);
     }
 }
