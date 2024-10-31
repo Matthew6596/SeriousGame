@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MinigameSelect.unity
     guid: babf0018e18b74542a4c5b5bee7040a7
   - enabled: 1
+    path: Assets/Scenes/MinigameSelect2.unity
+    guid: f7f12c0bfbcc400428fc357792be4e80
+  - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: 40cdfe907dc631f4d8c1bf3106157a6c
   - enabled: 1

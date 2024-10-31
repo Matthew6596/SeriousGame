@@ -180,11 +180,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Navigate the mouse cursor through the maze without hitting the walls
+  m_text: 'Click on a card to flip it revealing a shape
 
 
-    Get
-    from the start to the end'
+    Flip two cards and
+    try to get a match
+
+
+    Keep going until all cards have been matched!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -430,7 +433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &486432324
@@ -1154,7 +1157,7 @@ GameObject:
   - component: {fileID: 1094056176}
   - component: {fileID: 1094056175}
   m_Layer: 5
-  m_Name: playBtn
+  m_Name: matchingGamesBtn (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1235,7 +1238,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MouseMaze
+          m_StringArgument: MatchingGame
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1094056176
@@ -1333,7 +1336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2b3a94a0cf6a12741b76eadd66f3afd5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e08a9a92de20ec46bab5d80342a814d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
