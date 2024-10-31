@@ -20,6 +20,7 @@ public class PlayerMouse : MonoBehaviour
     public bool mouseDown = false;
     public Vector2 mousePos;
 
+    public bool disableClick = false;
 
     private void Awake()
     {
@@ -50,7 +51,6 @@ public class PlayerMouse : MonoBehaviour
         
         foreach (MouseInteractable i in interactables) 
         {
-            if (i == null) { Debug.LogWarning("null intertactable in mouse list still"); break; }
             if (i.CheckInside(out bool inside))
             {
                 if (inside) i.onMouseEnter.Invoke();
@@ -60,35 +60,24 @@ public class PlayerMouse : MonoBehaviour
     }
     public void MouseClick(InputAction.CallbackContext ctx)
     {
+        if (disableClick) return;
         if (ctx.performed) //if clicked
         {
             mouseDown = true;
             onMouseDown.Invoke();
-            //bool err = false;
             foreach (MouseInteractable i in interactables)
             {
-                if (i == null) { Debug.LogWarning("null intertactable in mouse list still"); break; }
-                if (i.mouseInside)
-                {
-                    i.onMouseDown.Invoke(); //invoke if clicked inside
-                }
+                if (i.mouseInside) i.onMouseDown.Invoke(); //invoke if clicked inside
             }
-            //if (err) interactables.Clear();
         }
         else if (ctx.canceled)
         {
             mouseDown = false;
             onMouseUp.Invoke();
-            //bool err = false;
             foreach (MouseInteractable i in interactables)
             {
-                if (i == null) { Debug.LogWarning("null intertactable in mouse list still"); break; }
-                if (i.mouseInside)
-                {
-                    i.onMouseDown.Invoke(); //invoke if clicked inside
-                }
+                if (i.mouseInside) i.onMouseUp.Invoke();
             }
-            //if (err) interactables.Clear();
         }
     }
 }
