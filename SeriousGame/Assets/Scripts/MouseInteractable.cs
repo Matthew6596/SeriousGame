@@ -19,6 +19,11 @@ public class MouseInteractable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        start();
+    }
+
+    protected void start()
+    {
         _collider = GetComponent<Collider2D>();
         PlayerMouse.interactables.Add(this);
     }
