@@ -20,6 +20,8 @@ public class TweenPosition : MonoBehaviour
         transform.localPosition = Tween.LazyTweenScaled(transform.localPosition, targetPos, rate);
     }
 
+    public void SetPosition(Transform _transform) { targetPos = _transform.position; }
+    public void SetImmediatePos(Transform _transform) { transform.position = _transform.position; }
     public void SetPositionX(float x){ targetPos.x = x; }
     public void SetPositionY(float y){ targetPos.y = y; }
     public void SetPositionZ(float z){ targetPos.z = z; }
