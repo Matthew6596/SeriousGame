@@ -20,12 +20,31 @@ public class TweenScale : MonoBehaviour
         transform.localScale=Tween.LazyTweenScaled(transform.localScale, targetScale, rate);
     }
 
+    public void SetOGScale(Vector3 scale) { ogScale = scale; }
     public void SetScaleX(float x){ targetScale.x = x; }
     public void SetScaleY(float y){ targetScale.y = y; }
     public void SetScaleZ(float z){ targetScale.z = z; }
     public void SetImmediateScaleX(float x) { transform.localScale = new(x,transform.localScale.y,transform.localScale.z); }
     public void SetImmediateScaleY(float y) { transform.localScale = new(transform.localScale.x, y,transform.localScale.z); }
     public void SetImmediateScaleZ(float z) { transform.localScale = new(transform.localScale.x, transform.localScale.y,z); }
+    public void SetScaleMultOGX(float x) {  targetScale.x = ogScale.x*x; }
+    public void SetScaleMultOGY(float y) {  targetScale.y = ogScale.y*y; }
+    public void SetScaleMultOGZ(float z) {  targetScale.z = ogScale.z*z; }
+    public void SetScaleMultX(float x) { targetScale.x = targetScale.x * x; }
+    public void SetScaleMultY(float y) { targetScale.y = targetScale.y * y; }
+    public void SetScaleMultZ(float z) { targetScale.z = targetScale.z * z; }
+    public void SetImmediateScaleMultOGX(float x) 
+    { transform.localScale = new(x*ogScale.x, transform.localScale.y, transform.localScale.z); }
+    public void SetImmediateScaleMultOGY(float y)
+    { transform.localScale = new(transform.localScale.x, ogScale.y*y, transform.localScale.z); }
+    public void SetImmediateScaleMultOGZ(float z)
+    { transform.localScale = new(transform.localScale.x, transform.localScale.y, ogScale.z*z); }
+    public void SetImmediateScaleMultX(float x)
+    { transform.localScale = new(x * targetScale.x, transform.localScale.y, transform.localScale.z); }
+    public void SetImmediateScaleMultY(float y)
+    { transform.localScale = new(transform.localScale.x, targetScale.y * y, transform.localScale.z); }
+    public void SetImmediateScaleMultZ(float z)
+    { transform.localScale = new(transform.localScale.x, transform.localScale.y, targetScale.z * z); }
     public void ResetScale(){targetScale = ogScale;}
     public void ResetScaleImmediate(){transform.localScale = ogScale;}
 }
