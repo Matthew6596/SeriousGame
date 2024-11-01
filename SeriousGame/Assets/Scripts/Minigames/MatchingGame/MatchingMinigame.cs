@@ -21,6 +21,7 @@ public class MatchingMinigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //---TEMPORARY---
         float r = Random.value;
         if (r <= .33f)
         {
@@ -34,7 +35,8 @@ public class MatchingMinigame : MonoBehaviour
         {
             difficulty=GameDifficulty.Hard;
         }
-        difficulty = GameDifficulty.Normal;
+        //-------
+
         StartMinigame();
     }
 
