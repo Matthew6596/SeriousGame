@@ -21,21 +21,7 @@ public class MatchingMinigame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //---TEMPORARY---
-        float r = Random.value;
-        if (r <= .33f)
-        {
-            difficulty = GameDifficulty.Easy;
-        }
-        else if (r < .67f)
-        {
-            difficulty=GameDifficulty.Normal;
-        }
-        else
-        {
-            difficulty=GameDifficulty.Hard;
-        }
-        //-------
+        difficulty = MinigameManager.selectedDifficulty;
 
         StartMinigame();
     }
