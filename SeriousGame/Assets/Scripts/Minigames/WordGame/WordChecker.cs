@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class WordChecker : MonoBehaviour
 {
+    enum WordState { None, Valid, Invalid}
+    WordState wordState = WordState.None;
+
+    public string word="";
+
     public TextAsset[] wordDictionaries;
     public LetterTileSlot[] tileSlots;
 
-    private Vector3 targetColor;
+    private Vector3 targetColor=new(.5f,.5f,.5f);
     private SpriteRenderer _sprRender;
 
     // Start is called before the first frame update
@@ -49,7 +54,7 @@ public class WordChecker : MonoBehaviour
     }
     public void CheckForWord()
     {
-        string word = "";
+        word = "";
         bool gapCheck = false;
         for (int i = 0; i < tileSlots.Length; i++)
         {
@@ -65,10 +70,11 @@ public class WordChecker : MonoBehaviour
             }
             word += tileSlots[i].heldTile.letter;
         }
-        CheckDictionary(word.ToLower());
+        Debug.Log(word);
+        CheckDictionary();
     }
 
-    private void CheckDictionary(string word)
+    private void CheckDictionary()
     {
         //Open dictionary based on word length (dictionaries should be sorted alphabetically)
         int lengthIndex = word.Length - 3; //start with 3 letter words
@@ -80,7 +86,7 @@ public class WordChecker : MonoBehaviour
         TextAsset dictionary = wordDictionaries[lengthIndex];
         List<string> words = new(); words.AddRange(dictionary.text.Split('\n', '\r'));
 
-        if (words.Contains(word))
+        if (words.Contains(word.ToLower()))
         {
             ValidWord();
         }
@@ -93,13 +99,34 @@ public class WordChecker : MonoBehaviour
     private void IncompleteWord()
     {
         targetColor = new(.5f, .5f, .5f);
+        wordState = WordState.None;
     }
     private void InvalidWord()
     {
         targetColor = new(1, 0, 0);
+        wordState = WordState.Invalid;
     }
     private void ValidWord()
     {
         targetColor = new(0, 1, 0);
+        wordState = WordState.Valid;
+    }
+
+    public int score = 0;
+    public void SubmitWord()
+    {
+        switch (wordState)
+        {
+            case WordState.None:
+                //Give invalid message
+                break;
+            case WordState.Invalid:
+                //Give "not a word" message
+                break;
+            case WordState.Valid:
+                score += (word.Length) switch { 3=>3,4=>4,5=>6,7=>10,8=>12,_=>3};
+                break;
+        }
+        Debug.Log(wordState+": "+score);
     }
 }
