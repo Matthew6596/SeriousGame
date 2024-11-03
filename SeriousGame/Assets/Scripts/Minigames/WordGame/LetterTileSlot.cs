@@ -6,8 +6,9 @@ using UnityEngine.Events;
 
 public class LetterTileSlot : MonoBehaviour
 {
-    public event EventHandler onLetterEntered;
+    public event EventHandler<LetterTileSlot> onLetterEntered,onLetterExited;
     public LetterTile heldTile;
+    public LetterTileSlot nextSlot;
     UnityAction setTilePosAction;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,7 +30,7 @@ public class LetterTileSlot : MonoBehaviour
             setTilePosAction();
         }
         heldTile = lmd.GetComponent<LetterTile>(); //set the tile as being in this slot
-        onLetterEntered?.Invoke(null,null);
+        onLetterEntered?.Invoke(null,this);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -42,5 +43,7 @@ public class LetterTileSlot : MonoBehaviour
         lmd.onMouseUp.RemoveListener(setTilePosAction);
         //No more tile here
         heldTile = null;
+
+        onLetterExited?.Invoke(null, this);
     }
 }

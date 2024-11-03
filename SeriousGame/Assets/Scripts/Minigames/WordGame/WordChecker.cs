@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System.Text;
-using System.Linq;
 
 public class WordChecker : MonoBehaviour
 {
@@ -17,7 +14,22 @@ public class WordChecker : MonoBehaviour
     void Start()
     {
         _sprRender = GetComponent<SpriteRenderer>();
-        foreach (LetterTileSlot slot in tileSlots) slot.onLetterEntered += (s,e)=> { CheckForWord(); };
+        for( int i=0; i<tileSlots.Length; i++)
+        {
+            tileSlots[i].onLetterEntered += (s, e) => { 
+                CheckForWord();
+                if (e.nextSlot!=null)
+                {
+                    e.nextSlot.gameObject.SetActive(true);
+                }
+            };
+            tileSlots[i].onLetterExited += (s, e) => { 
+                CheckForWord();
+                checkSlotsShown();
+            };
+            if(i+1<tileSlots.Length) tileSlots[i].nextSlot = tileSlots[i+1];
+            if(i!=0)tileSlots[i].gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -27,6 +39,14 @@ public class WordChecker : MonoBehaviour
         _sprRender.color = new Color(col.x,col.y,col.z);
     }
 
+    private void checkSlotsShown()
+    {
+        for(int i=tileSlots.Length-1; i>0; i--)
+        {
+            if (tileSlots[i - 1].heldTile == null && tileSlots[i].heldTile == null) tileSlots[i].gameObject.SetActive(false);
+            else break;
+        }
+    }
     public void CheckForWord()
     {
         string word = "";
