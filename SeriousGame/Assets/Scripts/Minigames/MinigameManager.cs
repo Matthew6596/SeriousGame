@@ -14,13 +14,12 @@ public class MinigameManager : MonoBehaviour
     public int currMinigameIndex=0;
 
     public TMP_Text instructionsTxt;
+    public GameObject nextGameBtn, prevGameBtn;
 
     public TextAsset[] minigameInstructions;
     public GameObject[] minigamePlayIcons;
 
     public TextAsset[] minigameCategories;
-
-
 
     private void Awake()
     {
@@ -51,6 +50,8 @@ public class MinigameManager : MonoBehaviour
         minigameInstructions = _instructions.ToArray();
         minigamePlayIcons = _playIcons.ToArray();
         //end of minigame category filtering
+
+        if (minigameInstructions.Length == 1) { prevGameBtn.SetActive(false); nextGameBtn.SetActive(false); }
 
         //Set instructions for the current minigame
         instructionsTxt.text = minigameInstructions[currMinigameIndex].text;
