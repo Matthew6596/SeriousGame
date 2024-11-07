@@ -24,12 +24,15 @@ public class TweenScale : MonoBehaviour
     public void SetScaleX(float x){ targetScale.x = x; }
     public void SetScaleY(float y){ targetScale.y = y; }
     public void SetScaleZ(float z){ targetScale.z = z; }
+    public void SetScaleXY(float xy) { targetScale.x = xy; targetScale.y = xy; }
     public void SetImmediateScaleX(float x) { transform.localScale = new(x,transform.localScale.y,transform.localScale.z); }
     public void SetImmediateScaleY(float y) { transform.localScale = new(transform.localScale.x, y,transform.localScale.z); }
     public void SetImmediateScaleZ(float z) { transform.localScale = new(transform.localScale.x, transform.localScale.y,z); }
+    public void SetImmediateScaleXY(float xy) { transform.localScale = new(xy, xy,transform.localScale.z); }
     public void SetScaleMultOGX(float x) {  targetScale.x = ogScale.x*x; }
     public void SetScaleMultOGY(float y) {  targetScale.y = ogScale.y*y; }
     public void SetScaleMultOGZ(float z) {  targetScale.z = ogScale.z*z; }
+    public void SetScaleMultOGXY(float xy) {  targetScale.x = ogScale.x*xy; targetScale.y = ogScale.y * xy; }
     public void SetScaleMultX(float x) { targetScale.x = targetScale.x * x; }
     public void SetScaleMultY(float y) { targetScale.y = targetScale.y * y; }
     public void SetScaleMultZ(float z) { targetScale.z = targetScale.z * z; }
@@ -39,6 +42,8 @@ public class TweenScale : MonoBehaviour
     { transform.localScale = new(transform.localScale.x, ogScale.y*y, transform.localScale.z); }
     public void SetImmediateScaleMultOGZ(float z)
     { transform.localScale = new(transform.localScale.x, transform.localScale.y, ogScale.z*z); }
+    public void SetImmediateScaleMultOGXY(float xy)
+    { transform.localScale = new(xy * ogScale.x, ogScale.y * xy, transform.localScale.z); }
     public void SetImmediateScaleMultX(float x)
     { transform.localScale = new(x * targetScale.x, transform.localScale.y, transform.localScale.z); }
     public void SetImmediateScaleMultY(float y)
