@@ -15,6 +15,9 @@ public class WordChecker : MonoBehaviour
     private Vector3 targetColor=new(.5f,.5f,.5f);
     private SpriteRenderer _sprRender;
 
+    public List<string> playedWords = new();
+    string errorMsg;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,23 +91,23 @@ public class WordChecker : MonoBehaviour
 
         if (words.Contains(word.ToLower()))
         {
-            ValidWord();
+            if (playedWords.Contains(word)) InvalidWord("Word already played");
+            else ValidWord();
         }
-        else
-        {
-            InvalidWord();
-        }
+        else InvalidWord("Word not in word list");
     }
 
     private void IncompleteWord()
     {
+        errorMsg = "Word must be at least 3 letters long";
         targetColor = new(.5f, .5f, .5f);
         wordState = WordState.None;
     }
-    private void InvalidWord()
+    private void InvalidWord(string reason)
     {
         targetColor = new(1, 0, 0);
         wordState = WordState.Invalid;
+        errorMsg = reason;
     }
     private void ValidWord()
     {
@@ -122,11 +125,26 @@ public class WordChecker : MonoBehaviour
                 break;
             case WordState.Invalid:
                 //Give "not a word" message
+                DropAllTiles();
                 break;
             case WordState.Valid:
+                playedWords.Add(word);
                 score += (word.Length) switch { 3=>3,4=>4,5=>6,7=>10,8=>12,_=>3};
+                DropAllTiles();
                 break;
         }
         Debug.Log(wordState+": "+score);
+    }
+    private void DropAllTiles()
+    {
+        for (int i = 0; i < tileSlots.Length; i++)
+        {
+            if (tileSlots[i].heldTile != null)
+            {
+                tileSlots[i].heldTile.gameObject.GetComponent<TweenPosition>().MovePositionY(-1.8f);
+                tileSlots[i].DropTile(tileSlots[i].heldTile);
+            }
+            else break;
+        }
     }
 }

@@ -61,7 +61,7 @@ public class LetterGeneration : MonoBehaviour
             {
                 List<Collider2D> _cols = new();
                 col.OverlapCollider(new(), _cols);
-                tile.transform.position = UnityEngine.Random.insideUnitCircle * 5.5f;
+                tile.transform.position = new Vector3(UnityEngine.Random.Range(-8,8), UnityEngine.Random.Range(-4.5f, 2.5f), 0);
             } while (ctr > 0);
             tile.SetActive(true);
         }

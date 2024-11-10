@@ -34,11 +34,14 @@ public class LetterTileSlot : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        LetterTile tile = collision.GetComponent<LetterTile>();
-        if (tile == null || heldTile!=tile) return;
+        DropTile(collision.GetComponent<LetterTile>());
+    }
+    public void DropTile(LetterTile tile)
+    {
+        if (tile == null || heldTile != tile) return;
 
         //Remove listeners for setting the tile's position here
-        MouseDraggable lmd = collision.GetComponent<MouseDraggable>();
+        MouseDraggable lmd = heldTile.GetComponent<MouseDraggable>();
         lmd.onMouseCancel.RemoveListener(setTilePosAction);
         lmd.onMouseUp.RemoveListener(setTilePosAction);
         //No more tile here

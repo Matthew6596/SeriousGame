@@ -28,6 +28,8 @@ public class TweenPosition : MonoBehaviour
     public void SetImmediatePosX(float x) { transform.localPosition = new(x,transform.localPosition.y,transform.localPosition.z); }
     public void SetImmediatePosY(float y) { transform.localPosition = new(transform.localPosition.x, y,transform.localPosition.z); }
     public void SetImmediatePosZ(float z) { transform.localPosition = new(transform.localPosition.x, transform.localPosition.y,z); }
+    public void MovePositionX(float x) { targetPos.x = transform.localPosition.x+x; }
+    public void MovePositionY(float y) { targetPos.y = transform.localPosition.y+y; }
     public void ResetPosition(){ targetPos = ogPos; }
     public void ResetPositionImmediate(){transform.localPosition = ogPos; }
 }
