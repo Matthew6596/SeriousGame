@@ -19,8 +19,22 @@ public class LetterGeneration : MonoBehaviour
     {
         wordChecker = GetComponent<WordChecker>();
 
-        //int numPossible = 0;
+        int numPossible = 0;
         string letters=generateRandLetters();
+        char[] _letters = letters.ToCharArray();
+        foreach (TextAsset dictionary in wordChecker.wordDictionaries)
+        {
+            string[] words = dictionary.text.Split('\n', '\r');
+            foreach (string word in words)
+            {
+                if (checkWordPossible(_letters,word))
+                {
+                    numPossible++;
+                }
+            }
+        }
+        Debug.Log("num possible"+numPossible);
+
         /*while (numPossible < 10)
         {
             numPossible = 0;
@@ -50,8 +64,8 @@ public class LetterGeneration : MonoBehaviour
         }*/
 
         //Debug.Log("num possible: " + numPossible);
-        
-        foreach(char l in letters)
+
+        foreach (char l in letters)
         {
             GameObject tile = Instantiate(tilePrefab);
             tile.GetComponent<LetterTile>().letter = char.ToUpper(l);
@@ -89,6 +103,16 @@ public class LetterGeneration : MonoBehaviour
             _letters += l;
         }
         return _letters;
+    }
+    private bool checkWordPossible(char[] letters,string word)
+    {
+        List<char> letterList = new(); letterList.AddRange(letters);
+        foreach(char _c in word)
+        {
+            if (letterList.Contains(_c)) letterList.Remove(_c);
+            else return false;
+        }
+        return true;
     }
 
     // Update is called once per frame

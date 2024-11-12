@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WordChecker : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class WordChecker : MonoBehaviour
 
     public TextAsset[] wordDictionaries;
     public LetterTileSlot[] tileSlots;
+
+    public TMP_Text scoreTxt;
 
     private Vector3 targetColor=new(.5f,.5f,.5f);
     private SpriteRenderer _sprRender;
@@ -130,6 +133,7 @@ public class WordChecker : MonoBehaviour
             case WordState.Valid:
                 playedWords.Add(word);
                 score += (word.Length) switch { 3=>3,4=>4,5=>6,7=>10,8=>12,_=>3};
+                scoreTxt.text = "Score: "+score;
                 DropAllTiles();
                 break;
         }
