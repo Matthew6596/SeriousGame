@@ -11,6 +11,7 @@ public class LetterGeneration : MonoBehaviour
     private string _vowel = "aeiouy";
     public GameObject tilePrefab;
     public int letterCount;
+    public TMPro.TMP_Text _txt;
 
     WordChecker wordChecker;
 
@@ -33,7 +34,7 @@ public class LetterGeneration : MonoBehaviour
                 }
             }
         }
-        Debug.Log("num possible"+numPossible);
+        _txt.text = ""+numPossible;
 
         /*while (numPossible < 10)
         {

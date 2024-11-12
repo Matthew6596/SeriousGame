@@ -140,37 +140,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onMouseEnter:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -2386365006820090917}
-        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
-        m_MethodName: SetScaleMultOGX
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1.1
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: -2386365006820090917}
-        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
-        m_MethodName: SetScaleMultOGY
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 1.1
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onMouseExit:
     m_PersistentCalls:
       m_Calls: []
   onMouseDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2386365006820090917}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: SetScaleMultOGXY
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onMouseUp:
     m_PersistentCalls:
       m_Calls:
