@@ -9,6 +9,7 @@ public class MouseMaze : MonoBehaviour
     //PlayerMouse
     public Vector2 mouseStartingPos = new Vector2(50, 550);
     Vector2 mousePosition;
+    Vector2 prevMousePosition;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,9 @@ public class MouseMaze : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void MouseCollision()
-    {
-        Debug.Log("Mouse");
+        prevMousePosition = Camera.main.WorldToScreenPoint(PlayerMouse.inst.mousePos); //NEW
+        /*(in update store mousepos in variable, on collide enter go to previous mouse pos. 
+         * Current version sets mouse pos back to where the collision first happened)*/
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,11 +31,9 @@ public class MouseMaze : MonoBehaviour
         Debug.Log("Collision");
         if (collision.gameObject.GetComponent<MouseFollower>() != null) //if mouse
         {
-            mousePosition = Camera.main.WorldToScreenPoint(PlayerMouse.inst.mousePos);
-            //position.y -= 1;
+            mousePosition = prevMousePosition; //NEW
+            //mousePosition = Camera.main.WorldToScreenPoint(PlayerMouse.inst.mousePos); //OLD
 
-            //Mouse.current.WarpCursorPosition(position);
-            //PlayerMouse.inst.mousePos = mouseStartingPos;
             Debug.Log("Mouse");
         }
     }
