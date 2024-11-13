@@ -1,0 +1,3 @@
+Navigate the mouse cursor through the maze without hitting the walls
+
+Get from the start to the end

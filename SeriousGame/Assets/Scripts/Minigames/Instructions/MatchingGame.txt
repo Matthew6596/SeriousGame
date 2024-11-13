@@ -1,0 +1,3 @@
+Click on a card to flip it revealing a shape
+
+Flip two cards at a time and try to get them all matched!

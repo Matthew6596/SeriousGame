@@ -18,6 +18,7 @@ public class MatchingCard : MonoBehaviour
 
     public void FlipCard()
     {
+        if (flipped) return;
         FlipCardOver();
         MatchingMinigame.Inst.CheckCard(this);
     }

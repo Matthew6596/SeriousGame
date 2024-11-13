@@ -77,6 +77,7 @@ public class PlayerMouse : MonoBehaviour
             foreach (MouseInteractable i in interactables)
             {
                 if (i.mouseInside) i.onMouseUp.Invoke();
+                else i.onMouseCancel.Invoke();
             }
         }
     }
