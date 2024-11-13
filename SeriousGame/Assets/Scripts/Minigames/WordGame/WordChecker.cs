@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class WordChecker : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class WordChecker : MonoBehaviour
     public TextAsset[] wordDictionaries;
     public LetterTileSlot[] tileSlots;
 
-    public TMP_Text scoreTxt;
+    public Transform foundWordList;
+    public GameObject foundWordPrefab;
+
+    public TMP_Text scoreTxt,feedbackTxt;
 
     private Vector3 targetColor=new(.5f,.5f,.5f);
     private SpriteRenderer _sprRender;
@@ -25,6 +29,7 @@ public class WordChecker : MonoBehaviour
     void Start()
     {
         _sprRender = GetComponent<SpriteRenderer>();
+        feedbackTxtShadow = feedbackTxt.gameObject.transform.parent.gameObject;
         for( int i=0; i<tileSlots.Length; i++)
         {
             tileSlots[i].onLetterEntered += (s, e) => { 
@@ -125,18 +130,26 @@ public class WordChecker : MonoBehaviour
         {
             case WordState.None:
                 //Give invalid message
+                SetFeedbackTxt(errorMsg);
                 break;
             case WordState.Invalid:
                 //Give "not a word" message
+                SetFeedbackTxt(errorMsg);
                 DropAllTiles();
                 break;
             case WordState.Valid:
                 playedWords.Add(word);
-                score += (word.Length) switch { 3=>3,4=>4,5=>6,7=>10,8=>12,_=>3};
+                int scoreInc = (word.Length) switch { 3 => 3, 4 => 4, 5 => 6, 6 => 8, 7 => 10, 8 => 12, _ => 3 };
+                score += scoreInc;
+                SetFeedbackTxt("+" + scoreInc + " points!");
                 scoreTxt.text = "Score: "+score;
+                GameObject _word = Instantiate(foundWordPrefab,foundWordList);
+                _word.GetComponent<TMP_Text>().text = word;
                 DropAllTiles();
                 break;
         }
+        if(textDisappearRoutine!=null)StopCoroutine(textDisappearRoutine);
+        textDisappearRoutine = StartCoroutine(textDisappear());
         Debug.Log(wordState+": "+score);
     }
     private void DropAllTiles()
@@ -150,5 +163,17 @@ public class WordChecker : MonoBehaviour
             }
             else break;
         }
+    }
+    private GameObject feedbackTxtShadow;
+    private void SetFeedbackTxt(string txt)
+    {
+        feedbackTxt.text = txt;
+        feedbackTxtShadow.SetActive(txt!="");
+    }
+    private Coroutine textDisappearRoutine;
+    IEnumerator textDisappear()
+    {
+        yield return new WaitForSecondsRealtime(3);
+        SetFeedbackTxt("");
     }
 }
