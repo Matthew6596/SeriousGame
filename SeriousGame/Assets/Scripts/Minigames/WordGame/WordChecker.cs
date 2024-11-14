@@ -46,6 +46,8 @@ public class WordChecker : MonoBehaviour
             if(i+1<tileSlots.Length) tileSlots[i].nextSlot = tileSlots[i+1];
             if(i!=0)tileSlots[i].gameObject.SetActive(false);
         }
+
+        targetScore = (MinigameManager.selectedDifficulty) switch { GameDifficulty.Easy => 15, GameDifficulty.Normal => 30, GameDifficulty.Hard => 60, _ => 15 };
     }
 
     // Update is called once per frame
@@ -146,11 +148,18 @@ public class WordChecker : MonoBehaviour
                 GameObject _word = Instantiate(foundWordPrefab,foundWordList);
                 _word.GetComponent<TMP_Text>().text = word;
                 DropAllTiles();
+                CheckEndGame();
                 break;
         }
         if(textDisappearRoutine!=null)StopCoroutine(textDisappearRoutine);
         textDisappearRoutine = StartCoroutine(textDisappear());
         Debug.Log(wordState+": "+score);
+    }
+
+    int targetScore;
+    private void CheckEndGame()
+    {
+        if (score >= targetScore) MenuManager.DelayAction(0.6f, () => { MenuManager.Inst.ChangeScene("WinScreen"); });
     }
     private void DropAllTiles()
     {
