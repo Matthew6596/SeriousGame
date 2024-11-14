@@ -24,7 +24,7 @@ public class MouseDraggable : MouseInteractable
     {
         if (dragging)
         {
-            Vector2 targetPos = PlayerMouse.MousePos + clickOffset;
+            Vector2 targetPos = PlayerMouse.MousePos - clickOffset;
             tweenPos.SetPositionX(targetPos.x);
             tweenPos.SetPositionY(targetPos.y);
         }

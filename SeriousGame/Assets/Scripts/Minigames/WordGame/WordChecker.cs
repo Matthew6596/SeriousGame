@@ -137,7 +137,7 @@ public class WordChecker : MonoBehaviour
             case WordState.Invalid:
                 //Give "not a word" message
                 SetFeedbackTxt(errorMsg);
-                DropAllTiles();
+                //DropAllTiles();
                 break;
             case WordState.Valid:
                 playedWords.Add(word);
@@ -167,11 +167,13 @@ public class WordChecker : MonoBehaviour
         {
             if (tileSlots[i].heldTile != null)
             {
-                tileSlots[i].heldTile.gameObject.GetComponent<TweenPosition>().MovePositionY(-1.8f);
-                tileSlots[i].DropTile(tileSlots[i].heldTile);
+                tileSlots[i].heldTile.tweenPos.SetPositionX(0);
+                tileSlots[i].heldTile.tweenPos.SetPositionY(0);
+                tileSlots[i].heldTile = null;
             }
             else break;
         }
+        checkSlotsShown();
     }
     private GameObject feedbackTxtShadow;
     private void SetFeedbackTxt(string txt)
