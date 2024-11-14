@@ -205,8 +205,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 525779144}
   m_HandleRect: {fileID: 525779143}
   m_Direction: 2
-  m_Value: 1.0000013
-  m_Size: 0.6766667
+  m_Value: 1.0000015
+  m_Size: 0.67666674
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 30
+    m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 0
@@ -749,6 +749,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: letterTile1
       objectReference: {fileID: 0}
+    - target: {fileID: 2260188923744123269, guid: 686ed455829cf8443853af482dec7172, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9035488272265193168, guid: 686ed455829cf8443853af482dec7172, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -888,6 +892,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1930900611}
   - {fileID: 1976978403}
   - {fileID: 2001947330}
   - {fileID: 695143088}
@@ -3613,11 +3618,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1976978403}
+  m_Father: {fileID: 434976291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -10.4, y: -26}
+  m_AnchoredPosition: {x: 306.20004, y: -150.13998}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1930900612
@@ -3787,12 +3792,11 @@ RectTransform:
   - {fileID: 1694404730}
   - {fileID: 1656698431}
   - {fileID: 55443494}
-  - {fileID: 1930900611}
   m_Father: {fileID: 434976291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 316.6, y: -9.14}
+  m_AnchoredPosition: {x: 316.6, y: -44.8}
   m_SizeDelta: {x: 170, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1976978404

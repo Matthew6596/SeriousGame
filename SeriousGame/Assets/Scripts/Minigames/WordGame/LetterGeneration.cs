@@ -36,36 +36,6 @@ public class LetterGeneration : MonoBehaviour
         }
         _txt.text = ""+numPossible;
 
-        /*while (numPossible < 10)
-        {
-            numPossible = 0;
-            letters = generateRandLetters();
-            foreach(TextAsset dictionary in wordChecker.wordDictionaries)
-            {
-                string[] words = dictionary.text.Split('\n', '\r');
-                foreach (string word in words) 
-                {
-                    bool valid = true;
-                    for(int i=0; i<word.Length; i++)
-                    {
-                        if (!letters.Contains(word[i]))
-                        {
-                            valid = false;
-                            break;
-                        }
-                    }
-                    if (valid)
-                    {
-                        numPossible++;
-                        //if (numPossible >= 10) break;
-                    }
-                }
-                //if (numPossible >= 10) break;
-            }
-        }*/
-
-        //Debug.Log("num possible: " + numPossible);
-
         foreach (char l in letters)
         {
             GameObject tile = Instantiate(tilePrefab);

@@ -10,7 +10,7 @@ public class LetterTileSlot : MonoBehaviour
     public LetterTile heldTile;
     public LetterTileSlot nextSlot;
     UnityAction setTilePosAction;
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         //Check if is letter tile
         if (collision.GetComponent<LetterTile>() == null || heldTile!=null) return;
@@ -35,18 +35,24 @@ public class LetterTileSlot : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         DropTile(collision.GetComponent<LetterTile>());
-    }
+    }*/
     public void DropTile(LetterTile tile)
     {
         if (tile == null || heldTile != tile) return;
 
         //Remove listeners for setting the tile's position here
-        MouseDraggable lmd = heldTile.GetComponent<MouseDraggable>();
-        lmd.onMouseCancel.RemoveListener(setTilePosAction);
-        lmd.onMouseUp.RemoveListener(setTilePosAction);
+        //MouseDraggable lmd = heldTile.GetComponent<MouseDraggable>();
+        //lmd.onMouseCancel.RemoveListener(setTilePosAction);
+        //lmd.onMouseUp.RemoveListener(setTilePosAction);
         //No more tile here
         heldTile = null;
 
         onLetterExited?.Invoke(null, this);
+    }
+    public void SetTile(LetterTile tile)
+    {
+        heldTile = tile;
+        onLetterEntered?.Invoke(null, this);
+        heldTile.gameObject.GetComponent<TweenPosition>().SetPosition(transform);
     }
 }
