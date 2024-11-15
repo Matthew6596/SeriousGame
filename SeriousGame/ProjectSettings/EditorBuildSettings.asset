@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Hub.unity
     guid: b75ab6d86a61e694b84055064b28e059
   - enabled: 1
+    path: Assets/Scenes/SlidingPuzzle.unity
+    guid: 73bc28ac6873616408f170751fb65f23
+  - enabled: 1
     path: Assets/Scenes/RebeccaTest.unity
     guid: 663ee84e2c7ae5b49b50c0af62aa5843
   - enabled: 1
