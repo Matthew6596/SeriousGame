@@ -12,19 +12,16 @@ public class LetterTileSlot : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         LetterTile tile = collision.GetComponent<LetterTile>();
-        if (tile != null)
-        {
-            tile.SlotEnter(this);
-            if (!tile.pickedup) SetTile(tile);
-        }
+        if (tile == null) return;
+
+        tile.SlotEnter(this);
+        if (!tile.pickedup && heldTile == null && tile.attachedSlot == null) { SetTile(tile); }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         LetterTile tile = collision.GetComponent<LetterTile>();
-        if (tile != null)
-        {
-            tile.SlotExit(this);
-        }
+        if (tile == null) return;
+        tile.SlotExit(this);
     }
     public void DropTile(LetterTile tile)
     {
@@ -35,6 +32,8 @@ public class LetterTileSlot : MonoBehaviour
     }
     public void SetTile(LetterTile tile)
     {
+        tile.attachedSlot = this;
+        tile.prevSlot = this;
         heldTile = tile;
         onLetterEntered?.Invoke(null, this);
         heldTile.tweenPos.SetPosition(transform);
