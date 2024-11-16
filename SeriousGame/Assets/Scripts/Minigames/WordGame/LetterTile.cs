@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using System.Diagnostics;
 
 public class LetterTile : MonoBehaviour
 {
-    public LetterTileSlot attachedSlot = null, prevSlot=null;
+    public LetterTileSlot attachedSlot = null;
     public TweenPosition tweenPos;
     public bool pickedup = false;
     private char _letter;
@@ -18,26 +19,31 @@ public class LetterTile : MonoBehaviour
             _letter = value;
         }
     }
+    Vector2 initPos;
+    bool attachable = false;
+
+    Stopwatch mouseDownTime=new();
 
     TMP_Text letterLabel;
     // Start is called before the first frame update
     void Start()
     {
         tweenPos = GetComponent<TweenPosition>();
+        initPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(walls.Count!=0) tweenPos.SetPosition(transform);
         //if colliding with other tile, override tween position (push)
-        else if (prevSlot!=null) tweenPos.SetPosition(attachedSlot.transform);
-        else if (collisions.Count != 0) tweenPos.SetPosition(transform);
+        if(attachedSlot!=null) tweenPos.SetPosition(attachedSlot.transform);
+        else if (walls.Count!=0 || collisions.Count!=0) tweenPos.SetPosition(transform);
     }
 
     List<Collision2D> collisions = new();
     List<Collision2D> walls = new();
     public List<LetterTileSlot> slots = new();
+    public void ClearCollisions() { collisions.Clear(); }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Keep track of collisions with other tiles
@@ -51,22 +57,45 @@ public class LetterTile : MonoBehaviour
         else if (attachedSlot != null) return;
         else if (collisions.Contains(collision)) collisions.Remove(collision);
     }
-    public void SlotEnter(LetterTileSlot slot) { if(!slots.Contains(slot))slots.Add(slot); }
-    public void SlotExit(LetterTileSlot slot) { if (slots.Contains(slot)) { slots.Remove(slot); }if(pickedup) slot.heldTile = null; }
+    public void SlotEnter(LetterTileSlot slot) 
+    {
+        if (!slots.Contains(slot))
+        {
+            slots.Add(slot);
+            if(attachable)slot.SetTile(this);
+        }
+    }
+    public void SlotExit(LetterTileSlot slot) 
+    { 
+        if (slots.Contains(slot)) slots.Remove(slot);
+        //if(pickedup) slot.heldTile = null; 
+    }
 
+    bool upFromSlot = false;
     public void Pickup()
     {
-        if (attachedSlot != null)
-        {
-            attachedSlot.DropTile(this);
-            //attachedSlot = null;
-        }
+        if (attachedSlot != null) { attachedSlot.DropTile(this); upFromSlot = true; }
         pickedup = true;
+        mouseDownTime = Stopwatch.StartNew();
     }
     public void Released()
     {
         if (!pickedup) return;
-        pickedup=false;
+        pickedup = false;
+
+        UnityEngine.Debug.Log("click time: " + mouseDownTime.ElapsedMilliseconds+"ms");
+        if (mouseDownTime.ElapsedMilliseconds < 100)
+        {
+            if (!upFromSlot) WordChecker.SetNextSlotTile(this);
+            else { tweenPos.SetPositionX(initPos.x); tweenPos.SetPositionY(initPos.y); }
+            upFromSlot = false;
+            return;
+        }
+        upFromSlot = false;
+
+        attachable = true;
+        MenuManager.DelayAction(.2f, () => { attachable = false; });
+
         //Get Closest slot
         float dist = float.MaxValue;
         LetterTileSlot closest=null;
@@ -85,10 +114,8 @@ public class LetterTile : MonoBehaviour
             if (attachedSlot != null)
             {
                 attachedSlot.DropTile(this);
-                attachedSlot = null;
                 tweenPos.SetPosition(transform);
             }
-            prevSlot = null;
             return;
         }
         else if (closest.heldTile != null) return;

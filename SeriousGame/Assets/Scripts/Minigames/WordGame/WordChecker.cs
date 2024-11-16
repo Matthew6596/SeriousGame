@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class WordChecker : MonoBehaviour
 {
+    public static WordChecker Inst;
+
     enum WordState { None, Valid, Invalid}
     WordState wordState = WordState.None;
 
@@ -24,6 +26,10 @@ public class WordChecker : MonoBehaviour
 
     public List<string> playedWords = new();
     string errorMsg;
+    private void Awake()
+    {
+        Inst = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -83,7 +89,6 @@ public class WordChecker : MonoBehaviour
             }
             word += tileSlots[i].heldTile.letter;
         }
-        Debug.Log(word);
         CheckDictionary();
     }
 
@@ -153,7 +158,6 @@ public class WordChecker : MonoBehaviour
         }
         if(textDisappearRoutine!=null)StopCoroutine(textDisappearRoutine);
         textDisappearRoutine = StartCoroutine(textDisappear());
-        Debug.Log(wordState+": "+score);
     }
 
     int targetScore;
@@ -167,13 +171,27 @@ public class WordChecker : MonoBehaviour
         {
             if (tileSlots[i].heldTile != null)
             {
-                tileSlots[i].heldTile.tweenPos.SetPositionX(0);
-                tileSlots[i].heldTile.tweenPos.SetPositionY(0);
-                tileSlots[i].heldTile = null;
+                //tileSlots[i].heldTile.tweenPos.SetPositionX(0);
+                //tileSlots[i].heldTile.tweenPos.SetPositionY(0);
+                LetterTile tile = tileSlots[i].heldTile;
+                //Tween tile back to letter tile jumble
+                tile.tweenPos.SetPositionX(Random.Range(-8.25f, 4.6f));
+                tile.tweenPos.SetPositionY(Random.Range(-4.5f, 2.5f));
+                tile.tweenPos.rate = 0.05f;
+                MenuManager.DelayAction(1, () => { tile.tweenPos.rate = .2f; tile.tweenPos.SetPosition(tile.transform); });
+                //Drop tile
+                tileSlots[i].DropTile(tile);
+                tile.ClearCollisions();
             }
             else break;
         }
         checkSlotsShown();
+        LetterTile[] tiles = FindObjectsOfType<LetterTile>();
+        foreach (LetterTile t in tiles)
+        {
+            //t.tweenPos.SetPositionX(Random.Range(-8.25f, 4.6f));
+            //t.tweenPos.SetPositionY(Random.Range(-4.5f, 2.5f));
+        }
     }
     private GameObject feedbackTxtShadow;
     private void SetFeedbackTxt(string txt)
@@ -186,5 +204,14 @@ public class WordChecker : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(3);
         SetFeedbackTxt("");
+    }
+
+    public static void SetNextSlotTile(LetterTile tile){Inst.setNextSlotTile(tile);}
+    public void setNextSlotTile(LetterTile tile)
+    {
+        for (int i = 0; i < tileSlots.Length; i++)
+        {
+            if (tileSlots[i].heldTile == null) { tileSlots[i].SetTile(tile); break; }
+        }
     }
 }
