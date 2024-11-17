@@ -201,9 +201,9 @@ public class WordChecker : MonoBehaviour
         feedbackTxtShadow.SetActive(txt!="");
     }
     private Coroutine textDisappearRoutine;
-    IEnumerator textDisappear()
+    IEnumerator textDisappear(float _t=3)
     {
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(_t);
         SetFeedbackTxt("");
     }
 
@@ -214,5 +214,13 @@ public class WordChecker : MonoBehaviour
         {
             if (tileSlots[i].heldTile == null) { tileSlots[i].SetTile(tile); break; }
         }
+    }
+    public void CalculateTargetScore(int possibleScore)
+    {
+        targetScore = possibleScore;
+        targetScore /= (MinigameManager.selectedDifficulty) switch { GameDifficulty.Easy => 50, GameDifficulty.Normal => 25, GameDifficulty.Hard => 10, _=>50};
+        SetFeedbackTxt("Get a score of " + targetScore);
+        if (textDisappearRoutine != null) StopCoroutine(textDisappearRoutine);
+        textDisappearRoutine = StartCoroutine(textDisappear(5));
     }
 }

@@ -34,19 +34,27 @@ public class LetterGeneration : MonoBehaviour
                 if (word.Trim() == "") continue;
                 if (checkWordPossible(_letters, word)) { _8letterPossible = true; Debug.Log("8 letter word: " + word); break; }
             }
-            /*foreach (TextAsset dictionary in wordChecker.wordDictionaries)
-            {
-                string[] words = dictionary.text.Split('\n', '\r');
-                foreach (string word in words)
-                {
-                    if (checkWordPossible(_letters,word))
-                    {
-                        numPossible++;
-                    }
-                }
-            }*/
-            //_txt.text = ""+numPossible;
         } while (!_8letterPossible);
+
+        //Check number possible
+        int numPossible = 0;
+        int possibleScore=0;
+        foreach (TextAsset dictionary in wordChecker.wordDictionaries)
+        {
+            string[] words = dictionary.text.Split('\n', '\r');
+            foreach (string word in words)
+            {
+                if (word.Trim() == "") continue;
+                if (checkWordPossible(letters.ToCharArray(), word))
+                {
+                    numPossible++;
+                    possibleScore += (word.Length) switch { 3 => 3, 4 => 4, 5 => 6, 6 => 8, 7 => 10, 8 => 12, _ => 3 };
+                }
+            }
+        }
+        Debug.Log("Num Possible: " + numPossible+", Score Possible: "+possibleScore);
+        _txt.text = "" + numPossible;
+        MenuManager.DelayAction(1, ()=> { wordChecker.CalculateTargetScore(possibleScore); });
 
         foreach (char l in letters)
         {
