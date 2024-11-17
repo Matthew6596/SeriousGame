@@ -20,21 +20,33 @@ public class LetterGeneration : MonoBehaviour
     {
         wordChecker = GetComponent<WordChecker>();
 
-        int numPossible = 0;
-        string letters=generateRandLetters();
-        char[] _letters = letters.ToCharArray();
-        foreach (TextAsset dictionary in wordChecker.wordDictionaries)
+        bool _8letterPossible;
+        string letters;
+        do
         {
-            string[] words = dictionary.text.Split('\n', '\r');
-            foreach (string word in words)
+            letters = generateRandLetters();
+            char[] _letters = letters.ToCharArray();
+            TextAsset dictionary8 = wordChecker.wordDictionaries[^1];
+            string[] _words = dictionary8.text.Split('\n', '\r');
+            _8letterPossible = false;
+            foreach (string word in _words)
             {
-                if (checkWordPossible(_letters,word))
-                {
-                    numPossible++;
-                }
+                if (word.Trim() == "") continue;
+                if (checkWordPossible(_letters, word)) { _8letterPossible = true; Debug.Log("8 letter word: " + word); break; }
             }
-        }
-        _txt.text = ""+numPossible;
+            /*foreach (TextAsset dictionary in wordChecker.wordDictionaries)
+            {
+                string[] words = dictionary.text.Split('\n', '\r');
+                foreach (string word in words)
+                {
+                    if (checkWordPossible(_letters,word))
+                    {
+                        numPossible++;
+                    }
+                }
+            }*/
+            //_txt.text = ""+numPossible;
+        } while (!_8letterPossible);
 
         foreach (char l in letters)
         {
