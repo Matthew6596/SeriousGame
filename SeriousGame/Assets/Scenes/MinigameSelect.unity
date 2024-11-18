@@ -1244,6 +1244,18 @@ MonoBehaviour:
           m_StringArgument: SlidingPuzzle
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 408413970}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: SetImmediateScaleMultOGXY
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &408413972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1604,6 +1616,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: WordGame
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 494106024}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: SetImmediateScaleMultOGXY
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.2
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &494106021
@@ -3114,6 +3138,18 @@ MonoBehaviour:
           m_StringArgument: MouseMaze
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1094056179}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: SetImmediateScaleMultOGXY
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1094056176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4188,6 +4224,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: MatchingGame
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1518388106}
+        m_TargetAssemblyTypeName: TweenScale, Assembly-CSharp
+        m_MethodName: SetImmediateScaleMultOGXY
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.2
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1518388103

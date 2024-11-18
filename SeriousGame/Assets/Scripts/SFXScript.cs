@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class SFXScript : MonoBehaviour
 {
+    public AudioClip menuBtnSound;
     public AudioClip[] sfxList;
     public Vector2 randomPitchRange=Vector2.one;
 
@@ -23,5 +24,17 @@ public class SFXScript : MonoBehaviour
     {
         src.pitch = Random.Range(randomPitchRange.x, randomPitchRange.y);
         src.PlayOneShot(clip);
+    }
+    public void PlayButtonHover()
+    {
+        src.volume = .15f;
+        src.pitch = 1;
+        src.PlayOneShot(menuBtnSound);
+    }
+    public void PlayButtonClick()
+    {
+        src.pitch = 1.3f;
+        src.volume = .25f;
+        src.PlayOneShot(menuBtnSound);
     }
 }

@@ -23,6 +23,7 @@ public class LetterTile : MonoBehaviour
     bool attachable = false;
 
     Stopwatch mouseDownTime=new();
+    Vector2 downPos;
 
     TMP_Text letterLabel;
     // Start is called before the first frame update
@@ -77,6 +78,7 @@ public class LetterTile : MonoBehaviour
         if (attachedSlot != null) { attachedSlot.DropTile(this); upFromSlot = true; }
         pickedup = true;
         mouseDownTime = Stopwatch.StartNew();
+        downPos = transform.position;
     }
     public void Released()
     {
@@ -84,11 +86,16 @@ public class LetterTile : MonoBehaviour
         pickedup = false;
 
         UnityEngine.Debug.Log("click time: " + mouseDownTime.ElapsedMilliseconds+"ms");
-        if (mouseDownTime.ElapsedMilliseconds < 100)
+        if (mouseDownTime.ElapsedMilliseconds < 100 || (mouseDownTime.ElapsedMilliseconds<600&&Vector2.Distance(downPos,transform.position)<0.5f))
         {
             if (!upFromSlot) WordChecker.SetNextSlotTile(this);
-            else { tweenPos.SetPositionX(initPos.x); tweenPos.SetPositionY(initPos.y); }
+            else { 
+                tweenPos.SetPositionX(initPos.x); tweenPos.SetPositionY(initPos.y);
+                MenuManager.DelayAction(.5f, () => { tweenPos.SetPosition(transform); enabled = true; });
+                enabled = false;
+            }
             upFromSlot = false;
+            
             return;
         }
         upFromSlot = false;

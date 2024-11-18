@@ -34,6 +34,8 @@ public class WordChecker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MenuManager.lastMinigame = "WordGame";
+
         _sprRender = GetComponent<SpriteRenderer>();
         feedbackTxtShadow = feedbackTxt.gameObject.transform.parent.gameObject;
         for( int i=0; i<tileSlots.Length; i++)
@@ -178,7 +180,7 @@ public class WordChecker : MonoBehaviour
                 tile.tweenPos.SetPositionX(Random.Range(-8.25f, 4.6f));
                 tile.tweenPos.SetPositionY(Random.Range(-4.5f, 2.5f));
                 tile.tweenPos.rate = 0.05f;
-                MenuManager.DelayAction(1, () => { tile.tweenPos.rate = .2f; tile.tweenPos.SetPosition(tile.transform); tile.enabled = true; });
+                MenuManager.DelayAction(.5f, () => { tile.tweenPos.rate = .2f; tile.tweenPos.SetPosition(tile.transform); tile.enabled = true; });
                 //Drop tile
                 tileSlots[i].DropTile(tile);
                 tile.ClearCollisions();
