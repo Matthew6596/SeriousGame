@@ -11,6 +11,7 @@ public class MouseInteractable : MonoBehaviour
     public UnityEvent onMouseExit;
     public UnityEvent onMouseDown;
     public UnityEvent onMouseUp;
+    public UnityEvent onMouseCancel;
 
     Collider2D _collider;
 
@@ -18,6 +19,11 @@ public class MouseInteractable : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+    {
+        start();
+    }
+
+    protected void start()
     {
         _collider = GetComponent<Collider2D>();
         PlayerMouse.interactables.Add(this);

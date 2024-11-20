@@ -1,0 +1,3 @@
+Hold click and move letter tiles into slots to make words.
+
+When you think you have a word, press submit to get points!

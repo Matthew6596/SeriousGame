@@ -30,10 +30,9 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    private string selectedMinigameType;
     public void SelectMinigameType(string type)
     {
-        selectedMinigameType = type;
+        MinigameManager.selectedMinigameCategory = type;
         ChangeScene("MinigameSelect");
     }
 
