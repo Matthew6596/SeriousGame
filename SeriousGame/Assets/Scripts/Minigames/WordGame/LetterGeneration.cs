@@ -53,7 +53,7 @@ public class LetterGeneration : MonoBehaviour
             }
         }
         Debug.Log("Num Possible: " + numPossible+", Score Possible: "+possibleScore);
-        _txt.text = "" + numPossible;
+        //_txt.text = "" + numPossible;
         MenuManager.DelayAction(1, ()=> { wordChecker.CalculateTargetScore(possibleScore); });
 
         foreach (char l in letters)

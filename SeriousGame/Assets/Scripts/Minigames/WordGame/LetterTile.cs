@@ -10,7 +10,10 @@ public class LetterTile : MonoBehaviour
     public LetterTileSlot attachedSlot = null;
     public TweenPosition tweenPos;
     public bool pickedup = false;
+    public AudioClip tileDropSfx;
     private char _letter;
+
+    private AudioSource src;
     public char letter { get => _letter; set
         {
             //When letter is set, update the text label too
@@ -30,6 +33,7 @@ public class LetterTile : MonoBehaviour
     void Start()
     {
         tweenPos = GetComponent<TweenPosition>();
+        src = GetComponent<AudioSource>();
         initPos = transform.position;
     }
 
@@ -83,9 +87,10 @@ public class LetterTile : MonoBehaviour
     public void Released()
     {
         if (!pickedup) return;
+        src.PlayOneShot(tileDropSfx);
         pickedup = false;
 
-        UnityEngine.Debug.Log("click time: " + mouseDownTime.ElapsedMilliseconds+"ms");
+        //UnityEngine.Debug.Log("click time: " + mouseDownTime.ElapsedMilliseconds+"ms");
         if (mouseDownTime.ElapsedMilliseconds < 100 || (mouseDownTime.ElapsedMilliseconds<600&&Vector2.Distance(downPos,transform.position)<0.5f))
         {
             if (!upFromSlot) WordChecker.SetNextSlotTile(this);

@@ -35,9 +35,5 @@ public class MusicRadio : MonoBehaviour
             src.clip = songs[currInd];
             src.PlayDelayed(1.5f);
         }
-        else
-        {
-            Debug.Log("Song Progress: " + src.time + "/" + songs[currInd].length);
-        }
     }
 }

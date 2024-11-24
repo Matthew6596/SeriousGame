@@ -21,6 +21,9 @@ public class WordChecker : MonoBehaviour
 
     public TMP_Text scoreTxt,feedbackTxt;
 
+    public AudioClip correctSfx, invalidSfx;
+    private AudioSource src;
+
     private Vector3 targetColor=new(.5f,.5f,.5f);
     private SpriteRenderer _sprRender;
 
@@ -35,6 +38,8 @@ public class WordChecker : MonoBehaviour
     void Start()
     {
         MenuManager.lastMinigame = "WordGame";
+
+        src = GetComponent<AudioSource>();
 
         _sprRender = GetComponent<SpriteRenderer>();
         feedbackTxtShadow = feedbackTxt.gameObject.transform.parent.gameObject;
@@ -54,8 +59,6 @@ public class WordChecker : MonoBehaviour
             if(i+1<tileSlots.Length) tileSlots[i].nextSlot = tileSlots[i+1];
             if(i!=0)tileSlots[i].gameObject.SetActive(false);
         }
-
-        targetScore = (MinigameManager.selectedDifficulty) switch { GameDifficulty.Easy => 15, GameDifficulty.Normal => 30, GameDifficulty.Hard => 60, _ => 15 };
     }
 
     // Update is called once per frame
@@ -140,10 +143,12 @@ public class WordChecker : MonoBehaviour
             case WordState.None:
                 //Give invalid message
                 SetFeedbackTxt(errorMsg);
+                //src.PlayOneShot(invalidSfx);
                 break;
             case WordState.Invalid:
                 //Give "not a word" message
                 SetFeedbackTxt(errorMsg);
+                //src.PlayOneShot(invalidSfx);
                 //DropAllTiles();
                 break;
             case WordState.Valid:
@@ -151,9 +156,10 @@ public class WordChecker : MonoBehaviour
                 int scoreInc = (word.Length) switch { 3 => 3, 4 => 4, 5 => 6, 6 => 8, 7 => 10, 8 => 12, _ => 3 };
                 score += scoreInc;
                 SetFeedbackTxt("+" + scoreInc + " points!");
-                scoreTxt.text = "Score: "+score;
+                scoreTxt.text = "Score: "+score+" / "+targetScore;
                 GameObject _word = Instantiate(foundWordPrefab,foundWordList);
                 _word.GetComponent<TMP_Text>().text = word;
+                //src.PlayOneShot(correctSfx);
                 DropAllTiles();
                 CheckEndGame();
                 break;
@@ -179,8 +185,9 @@ public class WordChecker : MonoBehaviour
                 //Tween tile back to letter tile jumble
                 tile.tweenPos.SetPositionX(Random.Range(-8.25f, 4.6f));
                 tile.tweenPos.SetPositionY(Random.Range(-4.5f, 2.5f));
+                tile.GetComponent<BoxCollider2D>().enabled = false;
                 tile.tweenPos.rate = 0.05f;
-                MenuManager.DelayAction(.5f, () => { tile.tweenPos.rate = .2f; tile.tweenPos.SetPosition(tile.transform); tile.enabled = true; });
+                MenuManager.DelayAction(.5f, () => { tile.tweenPos.rate = .2f; tile.tweenPos.SetPosition(tile.transform); tile.enabled = true; tile.GetComponent<BoxCollider2D>().enabled = true; });
                 //Drop tile
                 tileSlots[i].DropTile(tile);
                 tile.ClearCollisions();
@@ -222,6 +229,7 @@ public class WordChecker : MonoBehaviour
         targetScore = possibleScore;
         targetScore /= (MinigameManager.selectedDifficulty) switch { GameDifficulty.Easy => 50, GameDifficulty.Normal => 25, GameDifficulty.Hard => 10, _=>50};
         SetFeedbackTxt("Get a score of " + targetScore);
+        MenuManager.DelayAction(0, () => { scoreTxt.text = "Score: " + score + " / " + targetScore; });
         if (textDisappearRoutine != null) StopCoroutine(textDisappearRoutine);
         textDisappearRoutine = StartCoroutine(textDisappear(5));
     }
