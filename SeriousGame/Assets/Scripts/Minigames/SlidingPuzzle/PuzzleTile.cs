@@ -20,9 +20,27 @@ public class PuzzleTile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.localPosition.x == puzzleScript.blankPiece.x || gameObject.transform.localPosition.y == puzzleScript.blankPiece.y)
+        //Works, but takes a few clicks to move the movable tiles? Their canMove is true even when clicking on them does nothing
+        if (gameObject.transform.localPosition.x + gameObject.GetComponent<BoxCollider2D>().size.x == puzzleScript.blankPiece.x || //if right side is touching blank's left
+            gameObject.transform.localPosition.x == puzzleScript.blankPiece.x + gameObject.GetComponent<BoxCollider2D>().size.x || //if left side is touching blank's right
+            gameObject.transform.localPosition.y + gameObject.GetComponent<BoxCollider2D>().size.y == puzzleScript.blankPiece.y || //if bottom is touching blank's top
+            gameObject.transform.localPosition.y == puzzleScript.blankPiece.y + gameObject.GetComponent<BoxCollider2D>().size.y) //if top is touching blank's bottom
         {
-            canMove = true;
+            if (gameObject.transform.localPosition.x == puzzleScript.blankPiece.x || gameObject.transform.localPosition.y == puzzleScript.blankPiece.y && //if next to
+                gameObject.GetComponent<SpriteRenderer>().enabled) //and not blank
+            {
+                canMove = true;
+            }
+            else
+                canMove = false;
+        }
+        else
+            canMove = false;
+
+        //Testing
+        if(canMove)
+        {
+            Debug.Log(gameObject.name);
         }
     }
 

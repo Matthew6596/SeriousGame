@@ -12,18 +12,23 @@ public class PuzzleScript : MonoBehaviour
 
     public Vector2 blankPiece;
 
+    int index;
+
     // Start is called before the first frame update
     void Start()
     {
         MenuManager.lastMinigame = "SlidingPuzzle";
         ChooseBlankPiece();
-        //canWin = true;
+        //canWin = true; //Disabled for testing
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(CheckPuzzlePositions() && canWin)
+        //Update blank piece's position
+        puzzlePieces[index].transform.localPosition = blankPiece;
+
+        if (CheckPuzzlePositions() && canWin)
         {
             MenuManager.DelayAction(0.6f, () => { MenuManager.Inst.ChangeScene("WinScreen"); });
             Debug.Log("You Win!");
@@ -48,9 +53,10 @@ public class PuzzleScript : MonoBehaviour
 
     void ChooseBlankPiece()
     {
-        int index = Random.Range(0, numOfPieces);
+        index = Random.Range(0, numOfPieces);
         blankPiece = puzzlePieces[index].transform.localPosition;
         puzzlePieces[index].GetComponent<SpriteRenderer>().enabled = false;
+        puzzlePieces[index].GetComponent<MouseInteractable>().enabled = false;
     }
 
 }
