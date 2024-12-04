@@ -18,7 +18,8 @@ public class PuzzleScript : MonoBehaviour
     void Start()
     {
         MenuManager.lastMinigame = "SlidingPuzzle";
-        ChooseBlankPiece();
+        MenuManager.DelayAction(0.6f, () => { ChooseBlankPiece(); });
+        MenuManager.DelayAction(0.6f, () => { RandomizePositions(); });
         //canWin = true; //Disabled for testing
     }
 
@@ -53,10 +54,49 @@ public class PuzzleScript : MonoBehaviour
 
     void ChooseBlankPiece()
     {
-        index = Random.Range(0, numOfPieces);
+        //index = Random.Range(0, numOfPieces);
+        index = Random.Range(1, numOfPieces - 1);
         blankPiece = puzzlePieces[index].transform.localPosition;
         puzzlePieces[index].GetComponent<SpriteRenderer>().enabled = false;
         puzzlePieces[index].GetComponent<MouseInteractable>().enabled = false;
+    }
+
+    void RandomizePositions()
+    {
+        //I think TweenPosition is messing with this????
+
+        Vector2 temp = puzzlePieces[0].transform.localPosition; //store first piece's pos
+        puzzlePieces[0].transform.localPosition = puzzlePieces[numOfPieces - 1].transform.localPosition;
+        puzzlePieces[numOfPieces - 1].transform.localPosition = temp;
+
+        //This is bad and doesn't work
+        //int i = Random.Range(1, numOfPieces - 2);
+
+        //for (int ctr = 0; ctr < numOfPieces - 1; ctr++)
+        //{
+        //    GameObject puzzlePiece = puzzlePieces[i];
+        //    if (puzzlePiece.GetComponent<SpriteRenderer>().enabled) //if not blank
+        //    {
+        //        if (ctr == 0)
+        //            puzzlePiece.transform.localPosition = puzzlePieces[numOfPieces - 1].transform.localPosition; //give first piece the last piece's pos
+        //        if (ctr == numOfPieces - 1)
+        //            puzzlePiece.transform.localPosition = temp; //give last piece the first piece's pos
+        //        else if (ctr != 0)
+        //        {
+        //            puzzlePiece.transform.localPosition = puzzlePieces[i - 1].transform.localPosition;
+        //        }
+
+        //        if (i + 1 < numOfPieces - 1)
+        //        {
+        //            i++;
+        //        }
+        //        else
+        //            i = 0;
+
+        //    }
+        //    puzzlePieces[i] = puzzlePiece;
+        //}
+
     }
 
 }
