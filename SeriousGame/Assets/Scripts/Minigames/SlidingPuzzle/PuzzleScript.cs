@@ -66,7 +66,12 @@ public class PuzzleScript : MonoBehaviour
         //I think TweenPosition is messing with this????
 
         Vector2 temp = puzzlePieces[0].transform.localPosition; //store first piece's pos
+        puzzlePieces[0].GetComponent<TweenPosition>().SetPositionX(puzzlePieces[numOfPieces - 1].transform.localPosition.x);
+        puzzlePieces[0].GetComponent<TweenPosition>().SetPositionY(puzzlePieces[numOfPieces - 1].transform.localPosition.y);
         puzzlePieces[0].transform.localPosition = puzzlePieces[numOfPieces - 1].transform.localPosition;
+
+        puzzlePieces[numOfPieces - 1].GetComponent<TweenPosition>().SetPositionX(temp.x);
+        puzzlePieces[numOfPieces - 1].GetComponent<TweenPosition>().SetPositionY(temp.y);
         puzzlePieces[numOfPieces - 1].transform.localPosition = temp;
 
         //This is bad and doesn't work
