@@ -8,6 +8,7 @@ public class MatchingMinigame : MonoBehaviour
     public static MatchingMinigame Inst;
     public static GameDifficulty difficulty=GameDifficulty.Easy;
 
+    public SFXScript sfx;
     public GameObject cardPrefab;
 
     public Sprite[] cardSprites;
@@ -91,6 +92,7 @@ public class MatchingMinigame : MonoBehaviour
             PlayerMouse.inst.disableClick = true;
             if (heldCard.cardType == card.cardType) //cards match!
             {
+                sfx.PlayPositive();
                 MenuManager.DelayAction(1, () => 
                 {
                     heldCard.gameObject.SetActive(false);
@@ -104,6 +106,7 @@ public class MatchingMinigame : MonoBehaviour
             }
             else //cards dont match :(
             {
+                //sfx.PlayNegative();
                 MenuManager.DelayAction(1, () => 
                 { 
                     heldCard.FlipCardOver();
