@@ -21,6 +21,8 @@ public class MinigameManager : MonoBehaviour
 
     public TextAsset[] minigameCategories;
 
+    public static int upgradePoints = 0;
+
     private void Awake()
     {
         Inst = this;
@@ -75,6 +77,11 @@ public class MinigameManager : MonoBehaviour
     public void SelectDifficulty(int diff)
     {
         selectedDifficulty = (GameDifficulty)diff;
+    }
+
+    public static void GiveWinReward()
+    {
+        upgradePoints += ((int)selectedDifficulty) + 1;
     }
 
     // Update is called once per frame

@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Inst;
     //private GameManager gm;
 
+    public bool playerWin = false;
+
     private void Awake()
     {
         Inst = this;
@@ -19,7 +21,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (playerWin) MinigameManager.GiveWinReward();
     }
 
     public void QuitGame() { Application.Quit(); }
