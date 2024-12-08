@@ -8,6 +8,8 @@ public class WordChecker : MonoBehaviour
 {
     public static WordChecker Inst;
 
+    public SFXScript sfx;
+
     enum WordState { None, Valid, Invalid}
     WordState wordState = WordState.None;
 
@@ -20,9 +22,6 @@ public class WordChecker : MonoBehaviour
     public GameObject foundWordPrefab;
 
     public TMP_Text scoreTxt,feedbackTxt;
-
-    public AudioClip correctSfx, invalidSfx;
-    private AudioSource src;
 
     private Vector3 targetColor=new(.5f,.5f,.5f);
     private SpriteRenderer _sprRender;
@@ -38,8 +37,6 @@ public class WordChecker : MonoBehaviour
     void Start()
     {
         MenuManager.lastMinigame = "WordGame";
-
-        src = GetComponent<AudioSource>();
 
         _sprRender = GetComponent<SpriteRenderer>();
         feedbackTxtShadow = feedbackTxt.gameObject.transform.parent.gameObject;
@@ -143,12 +140,12 @@ public class WordChecker : MonoBehaviour
             case WordState.None:
                 //Give invalid message
                 SetFeedbackTxt(errorMsg);
-                //src.PlayOneShot(invalidSfx);
+                sfx.PlayNegative();
                 break;
             case WordState.Invalid:
                 //Give "not a word" message
                 SetFeedbackTxt(errorMsg);
-                //src.PlayOneShot(invalidSfx);
+                sfx.PlayNegative();
                 //DropAllTiles();
                 break;
             case WordState.Valid:
@@ -159,7 +156,7 @@ public class WordChecker : MonoBehaviour
                 scoreTxt.text = "Score: "+score+" / "+targetScore;
                 GameObject _word = Instantiate(foundWordPrefab,foundWordList);
                 _word.GetComponent<TMP_Text>().text = word;
-                //src.PlayOneShot(correctSfx);
+                sfx.PlayPositive();
                 DropAllTiles();
                 CheckEndGame();
                 break;

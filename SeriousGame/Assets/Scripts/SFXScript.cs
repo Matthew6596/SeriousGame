@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class SFXScript : MonoBehaviour
 {
-    public AudioClip menuBtnSound;
+    public AudioClip menuBtnSound,positiveSfx,negativeSfx;
     public AudioClip[] sfxList;
     public Vector2 randomPitchRange=Vector2.one;
 
@@ -36,5 +36,18 @@ public class SFXScript : MonoBehaviour
         src.pitch = 1.3f;
         src.volume = .25f;
         src.PlayOneShot(menuBtnSound);
+    }
+
+    public void PlayPositive()
+    {
+        src.pitch = 1f;
+        src.volume = .8f;
+        src.PlayOneShot(positiveSfx);
+    }
+    public void PlayNegative()
+    {
+        src.pitch = 1f;
+        src.volume = .9f;
+        src.PlayOneShot(negativeSfx);
     }
 }
