@@ -49,6 +49,7 @@ public class PuzzleTile : MonoBehaviour
         Debug.Log("clicked: canmove="+canMove);
         if (canMove)
         {
+            canMove = false; //stop from clicking too fast
             Vector2 temp = gameObject.transform.localPosition;
             tweenPosition.SetPositionX(puzzleScript.blankPiece.x);
             tweenPosition.SetPositionY(puzzleScript.blankPiece.y);
