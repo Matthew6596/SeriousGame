@@ -19,8 +19,8 @@ public class PuzzleScript : MonoBehaviour
     {
         MenuManager.lastMinigame = "SlidingPuzzle";
         MenuManager.DelayAction(0.6f, () => { ChooseBlankPiece(); });
-        MenuManager.DelayAction(0.6f, () => { RandomizePositions(); });
-        //canWin = true; //Disabled for testing
+        MenuManager.DelayAction(0.8f, () => { RandomizePositions(); });
+        MenuManager.DelayAction(1f, () => { canWin = true; }); //Disabled for testing
     }
 
     // Update is called once per frame
@@ -55,7 +55,7 @@ public class PuzzleScript : MonoBehaviour
     void ChooseBlankPiece()
     {
         //index = Random.Range(0, numOfPieces);
-        index = Random.Range(1, numOfPieces - 1);
+        index = Random.Range(0, numOfPieces - 1);
         blankPiece = puzzlePieces[index].transform.localPosition;
         puzzlePieces[index].GetComponent<SpriteRenderer>().enabled = false;
         puzzlePieces[index].GetComponent<MouseInteractable>().enabled = false;
@@ -63,45 +63,55 @@ public class PuzzleScript : MonoBehaviour
 
     void RandomizePositions()
     {
-        //I think TweenPosition is messing with this????
-
         Vector2 temp = puzzlePieces[0].transform.localPosition; //store first piece's pos
+
+        //give first piece the last piece's pos
         puzzlePieces[0].GetComponent<TweenPosition>().SetPositionX(puzzlePieces[numOfPieces - 1].transform.localPosition.x);
         puzzlePieces[0].GetComponent<TweenPosition>().SetPositionY(puzzlePieces[numOfPieces - 1].transform.localPosition.y);
         puzzlePieces[0].transform.localPosition = puzzlePieces[numOfPieces - 1].transform.localPosition;
 
+        //give last piece the first piece's pos
         puzzlePieces[numOfPieces - 1].GetComponent<TweenPosition>().SetPositionX(temp.x);
         puzzlePieces[numOfPieces - 1].GetComponent<TweenPosition>().SetPositionY(temp.y);
         puzzlePieces[numOfPieces - 1].transform.localPosition = temp;
 
-        //This is bad and doesn't work
-        //int i = Random.Range(1, numOfPieces - 2);
+        int i = 1;
+        while(i % 2 != 0)
+        {
+            i = Random.Range(2, numOfPieces - 3);
+        }
 
-        //for (int ctr = 0; ctr < numOfPieces - 1; ctr++)
-        //{
-        //    GameObject puzzlePiece = puzzlePieces[i];
-        //    if (puzzlePiece.GetComponent<SpriteRenderer>().enabled) //if not blank
-        //    {
-        //        if (ctr == 0)
-        //            puzzlePiece.transform.localPosition = puzzlePieces[numOfPieces - 1].transform.localPosition; //give first piece the last piece's pos
-        //        if (ctr == numOfPieces - 1)
-        //            puzzlePiece.transform.localPosition = temp; //give last piece the first piece's pos
-        //        else if (ctr != 0)
-        //        {
-        //            puzzlePiece.transform.localPosition = puzzlePieces[i - 1].transform.localPosition;
-        //        }
+        for (int ctr = 0; ctr < numOfPieces - 1; ctr++)
+        {
+            GameObject puzzlePiece = puzzlePieces[i];
+            if (puzzlePiece.GetComponent<SpriteRenderer>().enabled && puzzlePieces[i - 1].GetComponent<SpriteRenderer>().enabled) //if not blank & previous not blank
+            {
+                if (i != 0 && i != numOfPieces - 1)
+                {
+                    //Store pos
+                    temp = puzzlePiece.transform.localPosition;
 
-        //        if (i + 1 < numOfPieces - 1)
-        //        {
-        //            i++;
-        //        }
-        //        else
-        //            i = 0;
+                    //Swap
+                    puzzlePiece.GetComponent<TweenPosition>().SetPositionX(puzzlePieces[i - 1].transform.localPosition.x);
+                    puzzlePiece.GetComponent<TweenPosition>().SetPositionY(puzzlePieces[i - 1].transform.localPosition.y);
+                    puzzlePiece.transform.localPosition = puzzlePieces[i - 1].transform.localPosition;
 
-        //    }
-        //    puzzlePieces[i] = puzzlePiece;
-        //}
+                    puzzlePieces[i-1].GetComponent<TweenPosition>().SetPositionX(temp.x);
+                    puzzlePieces[i-1].GetComponent<TweenPosition>().SetPositionY(temp.y);
+                    puzzlePiece.transform.localPosition = temp;
+                }
+                
+                puzzlePieces[i] = puzzlePiece;
 
+                if (i + 2 < numOfPieces - 1)
+                {
+                    //i++;
+                    i += 2;
+                }
+                else
+                    i = 2;
+            }
+        }
     }
 
 }
