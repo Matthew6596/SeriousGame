@@ -38,12 +38,23 @@ public class PuzzleScript : MonoBehaviour
 
     bool CheckPuzzlePositions()
     {
-        bool correct = true;
+        bool correct = false;
 
-        for(int i = 0; i < numOfPieces; i++)
+        for (int i = 0; i < numOfPieces; i++)
         {
-            if ((Vector2)puzzlePieces[i].transform.localPosition != positions[i])
-                correct = false;
+
+            //if below doesn't work, use TweenPosition.targetPos
+
+            //Margin of error for x
+            if (puzzlePieces[i].transform.localPosition.x <= positions[i].x + 2
+                && puzzlePieces[i].transform.localPosition.x >= positions[i].x - 2)
+            {
+                //Margin of error for y
+                if (puzzlePieces[i].transform.localPosition.y <= positions[i].y + 2
+                    && puzzlePieces[i].transform.localPosition.y >= positions[i].y - 2)
+                    correct = true;
+            }
+            correct = false;
 
             //Debug.Log(puzzlePieces[i].transform.localPosition);
             //Debug.Log(correct);
@@ -55,7 +66,7 @@ public class PuzzleScript : MonoBehaviour
     void ChooseBlankPiece()
     {
         //index = Random.Range(0, numOfPieces);
-        index = Random.Range(0, numOfPieces - 1);
+        index = Random.Range(1, numOfPieces - 1);
         blankPiece = puzzlePieces[index].transform.localPosition;
         puzzlePieces[index].GetComponent<SpriteRenderer>().enabled = false;
         puzzlePieces[index].GetComponent<MouseInteractable>().enabled = false;
