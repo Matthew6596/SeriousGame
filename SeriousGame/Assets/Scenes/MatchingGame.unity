@@ -186,7 +186,7 @@ MonoBehaviour:
   sfx: {fileID: 1667260464}
   cardPrefab: {fileID: 3725366329683053642, guid: 3795132e34396d2479d73e1860df354e, type: 3}
   cardSprites:
-  - {fileID: 21300000, guid: e8e3fc7f3f00b3048a50c3b88cda8740, type: 3}
+  - {fileID: 21300000, guid: 99916ca9d4137c6459034b9f3e12fb1b, type: 3}
   - {fileID: 21300000, guid: 7cd17e4d5851eb947860f661e38c2ca5, type: 3}
   - {fileID: 21300000, guid: 8a430a160f59ee145abf6759a1b20bc2, type: 3}
   - {fileID: 21300000, guid: 3cb58507c9ac865409b3186d37c262d4, type: 3}
