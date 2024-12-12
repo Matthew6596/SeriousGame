@@ -182,15 +182,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Flexibility Games
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
+  m_sharedMaterial: {fileID: 8410707020302523017, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280879376
+  m_fontColor: {r: 0.0627451, g: 0.03529412, b: 0.16078432, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -818,15 +818,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Home
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
+  m_sharedMaterial: {fileID: 8410707020302523017, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280879376
+  m_fontColor: {r: 0.0627451, g: 0.03529412, b: 0.16078432, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1278,15 +1278,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Matching Games
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
+  m_sharedMaterial: {fileID: 8410707020302523017, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280879376
+  m_fontColor: {r: 0.0627451, g: 0.03529412, b: 0.16078432, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2133,15 +2133,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Word Games
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
+  m_sharedMaterial: {fileID: 8410707020302523017, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280879376
+  m_fontColor: {r: 0.0627451, g: 0.03529412, b: 0.16078432, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2267,15 +2267,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
+  m_sharedMaterial: {fileID: 8410707020302523017, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280879376
+  m_fontColor: {r: 0.0627451, g: 0.03529412, b: 0.16078432, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2401,15 +2401,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Puzzle Games
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
+  m_sharedMaterial: {fileID: 8410707020302523017, guid: 98a22774854c7ea45a620c2d39b33145, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280879376
+  m_fontColor: {r: 0.0627451, g: 0.03529412, b: 0.16078432, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
