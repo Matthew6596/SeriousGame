@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class MouseFollower : MonoBehaviour
 {
+    public bool frozen = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,15 @@ public class MouseFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = PlayerMouse.inst.mousePos;
+        if(!frozen)
+        {
+            transform.position = PlayerMouse.inst.mousePos;
+        }
+    }
+
+    public void SetFrozen(bool state)
+    {
+        frozen = state;
     }
 
 }

@@ -357,6 +357,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuBtnSound: {fileID: 8300000, guid: e7373e9f0ef42234f941290169c3ea44, type: 3}
+  positiveSfx: {fileID: 0}
+  negativeSfx: {fileID: 0}
+  upgradeSfx: {fileID: 0}
   sfxList: []
   randomPitchRange: {x: 1, y: 1}
 --- !u!114 &2733668018859708435
@@ -371,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801e40862e5405142971dc2aeb4501c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerWin: 0
 --- !u!1 &4514653613006135153
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class MouseMaze : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        prevMousePosition = Camera.main.WorldToScreenPoint(PlayerMouse.inst.mousePos); //NEW
+       // prevMousePosition = Camera.main.WorldToScreenPoint(PlayerMouse.inst.mousePos); //NEW
         /*(in update store mousepos in variable, on collide enter go to previous mouse pos. 
          * Current version sets mouse pos back to where the collision first happened)*/
     }
@@ -31,7 +31,8 @@ public class MouseMaze : MonoBehaviour
         Debug.Log("Collision");
         if (collision.gameObject.GetComponent<MouseFollower>() != null) //if mouse
         {
-            mousePosition = prevMousePosition; //NEW
+            collision.gameObject.GetComponent<MouseFollower>().frozen = true;
+            //mousePosition = prevMousePosition; //NEW
             //mousePosition = Camera.main.WorldToScreenPoint(PlayerMouse.inst.mousePos); //OLD
 
             Debug.Log("Mouse");
@@ -42,7 +43,9 @@ public class MouseMaze : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<MouseFollower>() != null) //if mouse
         {
-            Mouse.current.WarpCursorPosition(mousePosition);
+            collision.gameObject.GetComponent<MouseFollower>().frozen = true;
+            //Mouse.current.WarpCursorPosition(mousePosition);
         }
     }
+
 }

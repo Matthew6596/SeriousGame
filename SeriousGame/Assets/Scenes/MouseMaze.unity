@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &52427939
 Grid:
   m_ObjectHideFlags: 0
@@ -29716,6 +29716,7 @@ GameObject:
   - component: {fileID: 657827802}
   - component: {fileID: 657827805}
   - component: {fileID: 657827804}
+  - component: {fileID: 657827807}
   - component: {fileID: 657827806}
   m_Layer: 0
   m_Name: MouseFollower
@@ -29803,6 +29804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930e1870156eb7b439cfddcfbe121246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frozen: 0
 --- !u!58 &657827805
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -29865,6 +29867,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &657827807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657827801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf9e73200a721e458c93596a4da3d34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onMouseEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onMouseExit:
+    m_PersistentCalls:
+      m_Calls: []
+  onMouseDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 657827804}
+        m_TargetAssemblyTypeName: MouseFollower, Assembly-CSharp
+        m_MethodName: SetFrozen
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMouseUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onMouseCancel:
+    m_PersistentCalls:
+      m_Calls: []
+  mouseInside: 0
 --- !u!1001 &786097859
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30058,7 +30100,7 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.05
   m_Points:
-  - {x: -9.590659, y: -0.21339262}
+  - {x: -7.097148, y: -0.204674}
   - {x: -5.0139065, y: -0.2157458}
   - {x: -4.996993, y: -0.21499759}
   - {x: -4.996974, y: -3.4836695}
@@ -30138,7 +30180,7 @@ Transform:
   m_GameObject: {fileID: 826683554}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: -0.56, z: 0}
+  m_LocalPosition: {x: 1.76, y: -0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30192,7 +30234,7 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.05
   m_Points:
-  - {x: -9.591613, y: 1.6780789}
+  - {x: -7.1155396, y: 1.6693604}
   - {x: -5.014124, y: 1.6771406}
   - {x: -5.0082254, y: 3.470919}
   - {x: 0.5936465, y: 3.469561}
@@ -30372,7 +30414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1200788364550222646, guid: a1a2ab316941add488be66fe76db9015, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4400296644264196000, guid: a1a2ab316941add488be66fe76db9015, type: 3}
       propertyPath: m_Pivot.x
@@ -30740,7 +30782,7 @@ GameObject:
   - component: {fileID: 1679621220}
   - component: {fileID: 1679621219}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30832,7 +30874,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6bee3ea36882a3742af475148c86bd3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -30852,7 +30894,7 @@ Transform:
   m_GameObject: {fileID: 1679621215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.79, y: 0.2308, z: 0}
+  m_LocalPosition: {x: 7.56, y: 0.2308, z: 0}
   m_LocalScale: {x: 1, y: 1.6331052, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
