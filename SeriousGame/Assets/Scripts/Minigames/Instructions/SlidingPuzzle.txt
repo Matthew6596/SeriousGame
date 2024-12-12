@@ -1,1 +1,3 @@
-Slide things!
+Click on the puzzle pieces to move them
+
+Make the pieces display the picture

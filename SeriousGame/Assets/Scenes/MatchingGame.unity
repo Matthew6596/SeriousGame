@@ -1305,6 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801e40862e5405142971dc2aeb4501c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerWin: 0
 --- !u!4 &877702605
 Transform:
   m_ObjectHideFlags: 0
@@ -1427,7 +1428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1200788364550222646, guid: a1a2ab316941add488be66fe76db9015, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4400296644264196000, guid: a1a2ab316941add488be66fe76db9015, type: 3}
       propertyPath: m_Pivot.x
@@ -1491,11 +1492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4400296644264196000, guid: a1a2ab316941add488be66fe76db9015, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -802.6526
+      value: -828
       objectReference: {fileID: 0}
     - target: {fileID: 4400296644264196000, guid: a1a2ab316941add488be66fe76db9015, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -432.244
+      value: -478
       objectReference: {fileID: 0}
     - target: {fileID: 4400296644264196000, guid: a1a2ab316941add488be66fe76db9015, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2527,6 +2528,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 438093647}
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 56864423}
@@ -2535,4 +2537,3 @@ SceneRoots:
   - {fileID: 877702605}
   - {fileID: 1386597807224776859}
   - {fileID: 1278316884}
-  - {fileID: 438093647}
