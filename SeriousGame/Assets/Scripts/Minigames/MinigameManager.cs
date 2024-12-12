@@ -31,6 +31,8 @@ public class MinigameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        selectedDifficulty = GameDifficulty.Easy;
+
         //Filter out minigames by category
         List<GameObject> _playIcons = new();
         List<TextAsset> _instructions = new();
